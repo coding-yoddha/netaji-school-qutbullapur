@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 
-export function Counter({ end, duration, title, icon }) {
+export function Counter({ end, duration }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const intervalRef = useRef(null); // Store interval reference
@@ -11,7 +11,7 @@ export function Counter({ end, duration, title, icon }) {
     let observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          if (intervalRef.current) clearInterval(intervalRef.current); // Clear any existing interval
+          if (intervalRef.current) clearInterval(intervalRef.current); // Clear existing interval
           setCount(0); // Reset count when in view
 
           let start = 0;
@@ -43,17 +43,11 @@ export function Counter({ end, duration, title, icon }) {
   }, [end, duration]);
 
   return (
-    <div
+    <span
       ref={ref}
-      className="flex flex-col items-center justify-center bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+      className="text-6xl sm:text-7xl font-extrabold text-white drop-shadow-lg relative z-10"
     >
-      <div className="text-5xl sm:text-6xl text-blue-500 mb-3">{icon}</div>
-      <h3 className="text-5xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400 drop-shadow-md">
-        {count}
-      </h3>
-      <p className="text-lg sm:text-xl text-gray-700 font-medium mt-2">
-        {title}
-      </p>
-    </div>
+      {count}
+    </span>
   );
 }

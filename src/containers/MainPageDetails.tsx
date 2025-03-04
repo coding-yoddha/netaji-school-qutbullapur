@@ -95,56 +95,92 @@ export const MainPageDetails = ({
       </section>
 
       {/* Count Up Section */}
-      <section className="py-12 bg-white">
+      <section className="py-16 bg-white relative">
         <div className="container mx-auto px-6 sm:px-12 lg:px-20">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 text-gray-800">
+          {/* Section Title */}
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-16 text-gray-900 relative">
             Our Enrollment Stats
+            <span className="block w-24 h-[3px] bg-blue-600 mx-auto mt-2 rounded-full"></span>
           </h2>
+
+          {/* Stats Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-            {/* Students Enrolled */}
-            <Counter
-              end={1500}
-              duration={3}
-              title="Students Enrolled This Year"
-              icon="📚"
-            />
+            {/* Card 1: Students Enrolled */}
+            <div className="relative bg-gradient-to-r from-blue-700 to-blue-500 text-white p-10 rounded-2xl flex flex-col items-center min-h-[200px]">
+              <span className="text-7xl sm:text-8xl font-extrabold relative z-10 text-black drop-shadow-lg">
+                <Counter end={1500} duration={3} />
+              </span>
+              <h3 className="text-2xl font-semibold tracking-wide mt-2 text-center text-black drop-shadow-md">
+                Students Enrolled
+              </h3>
+              <div className="absolute inset-0 flex justify-center items-center">
+                <span className="text-[10rem] font-extrabold text-black opacity-10">
+                  1500
+                </span>
+              </div>
+            </div>
 
-            {/* Passed Out Students */}
-            <Counter
-              end={5000}
-              duration={3}
-              title="Students Graduated"
-              icon="🎓"
-            />
+            {/* Card 2: Students Graduated */}
+            <div className="relative bg-gradient-to-r from-green-700 to-green-500 text-white p-10 rounded-2xl flex flex-col items-center min-h-[200px]">
+              <span className="text-7xl sm:text-8xl font-extrabold relative z-10 text-black drop-shadow-lg">
+                <Counter end={5000} duration={3} />
+              </span>
+              <h3 className="text-2xl font-semibold tracking-wide mt-2 text-center text-black drop-shadow-md">
+                Students Graduated
+              </h3>
+              <div className="absolute inset-0 flex justify-center items-center">
+                <span className="text-[10rem] font-extrabold text-black opacity-10">
+                  5000
+                </span>
+              </div>
+            </div>
 
-            {/* Awards Won */}
-            <Counter end={50} duration={3} title="Awards Won" icon="🏆" />
+            {/* Card 3: Awards Won */}
+            <div className="relative bg-gradient-to-r from-yellow-600 to-yellow-400 text-white p-10 rounded-2xl flex flex-col items-center min-h-[200px]">
+              <span className="text-7xl sm:text-8xl font-extrabold relative z-10 text-black drop-shadow-lg">
+                <Counter end={50} duration={3} />
+              </span>
+              <h3 className="text-2xl font-semibold tracking-wide mt-2 text-center text-black drop-shadow-md">
+                Awards Won
+              </h3>
+              <div className="absolute inset-0 flex justify-center items-center">
+                <span className="text-[10rem] font-extrabold text-black opacity-10">
+                  50
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Achievements Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white relative">
         <div className="container mx-auto px-6 sm:px-12 lg:px-20 text-center">
           <motion.h2
-            className="text-4xl font-bold mb-12 text-blue-600 drop-shadow-md"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            className="text-4xl font-extrabold mb-12 text-black relative inline-block"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            🏆 Our Achievements
+            <span className="relative z-10">Our Proud Achievements</span>
+            <div className="absolute left-1/2 -bottom-1 w-24 h-[3px] bg-blue-500 transform -translate-x-1/2 rounded-full"></div>
           </motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
             {achievements.map((item, index) => (
               <motion.div
                 key={index}
-                className="p-6 rounded-xl shadow-lg bg-white border border-gray-200 hover:shadow-2xl transition duration-300 relative overflow-hidden transform hover:-translate-y-2 hover:ring-2 hover:ring-blue-400"
-                whileHover={{ scale: 1.05 }}
+                className="p-6 bg-white/30 backdrop-blur-md rounded-2xl shadow-xl border border-blue-200/50 relative overflow-hidden transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
+                whileHover={{ scale: 1.08 }}
               >
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-teal-400"></div>
                 <h3 className="text-2xl font-semibold mb-2 text-gray-800">
                   {item.title}
                 </h3>
                 <p className="text-gray-600">{item.description}</p>
+                <div className="absolute -bottom-2 right-4 text-6xl opacity-20">
+                  {item.icon}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -152,30 +188,35 @@ export const MainPageDetails = ({
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gradient-to-r from-blue-50 to-white relative">
         <div className="container mx-auto px-6 sm:px-12 lg:px-20 text-center">
           <motion.h2
-            className="text-4xl font-bold mb-12 text-blue-600 drop-shadow-md"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            className="text-4xl font-extrabold mb-12 text-black relative inline-block"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            🌟 Why Choose Us?
+            <span className="relative z-10">Why Choose Us?</span>
+            <div className="absolute left-1/2 -bottom-1 w-24 h-[3px] bg-blue-500 transform -translate-x-1/2 rounded-full"></div>
           </motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="p-6 rounded-xl shadow-lg bg-white border border-gray-200 flex flex-col items-center text-center hover:shadow-2xl transition duration-300 relative overflow-hidden transform hover:-translate-y-2 hover:ring-2 hover:ring-blue-400"
-                whileHover={{ scale: 1.05 }}
+                className="p-8 bg-white/30 backdrop-blur-md rounded-2xl shadow-xl border border-blue-300/50 flex flex-col items-center text-center transition-transform duration-500 hover:scale-105 hover:shadow-2xl relative"
+                whileHover={{ scale: 1.08 }}
               >
-                <div className="text-5xl mb-4 text-blue-500">
+                <div className="text-6xl mb-4 text-blue-500 drop-shadow-lg">
                   {feature.icon}
                 </div>
                 <h3 className="text-2xl font-semibold mb-2 text-gray-800">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600">{feature.description}</p>
+                <div className="absolute bottom-2 right-4 text-6xl opacity-10">
+                  {feature.icon}
+                </div>
               </motion.div>
             ))}
           </div>
