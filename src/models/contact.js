@@ -101,4 +101,5 @@ ContactDetailsSchema.methods.getPrimaryPhoneNumber = function () {
     return primaryPhone ? primaryPhone.number : (this.phoneNumbers[0] ? this.phoneNumbers[0].number : null);
 };
 
-export default mongoose.models.ContactDetails || mongoose.model('ContactDetails', ContactDetailsSchema);
+const Contact = mongoose.models.ContactDetails || mongoose.model('ContactDetails', ContactDetailsSchema);
+export default Contact;
