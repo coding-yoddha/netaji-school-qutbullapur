@@ -89,5 +89,5 @@ SchoolSchema.virtual('url').get(function () {
     return `/schools/${this._id}`;
 });
 
-export default mongoose.models.School || mongoose.model('School', SchoolSchema);
-
+const School = mongoose.models.School || mongoose.model('School', SchoolSchema);
+export default School;
