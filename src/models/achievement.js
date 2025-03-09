@@ -54,4 +54,6 @@ AchievementSchema.virtual('formattedDate').get(function () {
 // Index for efficient querying
 AchievementSchema.index({ category: 1, level: 1, achievementDate: -1, featured: 1 });
 
-export default mongoose.models.Achievement || mongoose.model('Achievement', AchievementSchema);
+const Achievement = mongoose.models.Achievement || mongoose.model('Achievement', AchievementSchema);
+
+export default Achievement;
