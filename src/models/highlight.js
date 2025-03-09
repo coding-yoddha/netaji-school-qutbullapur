@@ -42,4 +42,6 @@ const HighlightSchema = new mongoose.Schema({
   timestamps: true
 });
 
-export default mongoose.models.Highlight || mongoose.model('Highlight', HighlightSchema);
+const Highlight = mongoose.models.Highlight || mongoose.model('Highlight', HighlightSchema);
+
+export default Highlight;
