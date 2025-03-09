@@ -4,24 +4,25 @@ const FacultySchema = new mongoose.Schema({
     personalInfo: {
         firstName: {
             type: String,
-            required: [true, 'First name is required'],
             trim: true,
             maxlength: [50, 'First name cannot be more than 50 characters']
         },
         lastName: {
             type: String,
-            required: [true, 'Last name is required'],
+            trim: true,
+            maxlength: [50, 'Last name cannot be more than 50 characters']
+        },
+        title: {
+            type: String,
             trim: true,
             maxlength: [50, 'Last name cannot be more than 50 characters']
         },
         dateOfBirth: {
             type: Date,
-            required: [true, 'Date of birth is required']
         },
         gender: {
             type: String,
             enum: ['Male', 'Female', 'Other'],
-            required: [true, 'Gender is required']
         },
         description: {
             type: String,
@@ -30,7 +31,6 @@ const FacultySchema = new mongoose.Schema({
     },
     employeeId: {
         type: String,
-        required: [true, "employee Id id required"],
         unique: true,
         trim: true
     },
@@ -48,10 +48,6 @@ const FacultySchema = new mongoose.Schema({
     contactInfo: {
         email: {
             type: String,
-            unique: true,
-            trim: true,
-            lowercase: true,
-            match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email']
         },
         phone: {
             type: String,
@@ -77,7 +73,6 @@ const FacultySchema = new mongoose.Schema({
     academicInfo: {
         highestDegree: {
             type: String,
-            required: [true, 'Highest degree is required'],
             trim: true
         },
         specialization: {
@@ -108,12 +103,10 @@ const FacultySchema = new mongoose.Schema({
     },
     position: {
         type: String,
-        required: [true, 'Position is required'],
         trim: true
     },
     order: {
         type: Number,
-        required: [true, 'Position is required'],
         trim: true
     },
 }, {
@@ -130,4 +123,5 @@ FacultySchema.virtual('url').get(function () {
     return `/faculty/${this._id}`;
 });
 
-export default mongoose.models.Faculty || mongoose.model('Faculty', FacultySchema);
+const Faculty = mongoose.models.Faculty || mongoose.model('Faculty', FacultySchema);
+export default Faculty;
