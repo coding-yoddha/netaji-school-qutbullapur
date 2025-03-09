@@ -68,4 +68,5 @@ AboutSchema.virtual('keypointCount').get(function () {
 // Index for efficient querying
 AboutSchema.index({ status: 1, order: 1 });
 
-export default mongoose.models.About || mongoose.model('About', AboutSchema);
+const About = mongoose.models.About || mongoose.model('About', AboutSchema);
+export default About;
