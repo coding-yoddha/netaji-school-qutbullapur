@@ -37,4 +37,5 @@ const MainPageImageSchema = new mongoose.Schema({
     timestamps: true
 });
 
-export default mongoose.models.MainPageImage || mongoose.model('MainPageImage', MainPageImageSchema);
+const MainPageImage = mongoose.models.MainPageImage || mongoose.model('MainPageImage', MainPageImageSchema);
+export default MainPageImage;
