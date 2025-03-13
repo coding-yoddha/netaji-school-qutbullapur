@@ -11,8 +11,20 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 import schoolChildren from "../../public/schoolChildren.svg";
+import { useEffect, useState } from "react";
+import { fetchContactPageData } from "@/app/utils/apiHelpers";
 
 export default function ContactUs() {
+  const [data, setData] = useState();
+  useEffect(() => {
+    fetchContactPageData().then((res) => {
+      const data = res?.response;
+      setData(data);
+      //console.log("data", data);
+    });
+  }, []);
+
+  console.log("data", data);
   return (
     <section className="relative bg-gradient-to-b from-blue-50 to-white py-16 px-6 sm:px-12 lg:px-20">
       {/* Animated Heading */}
@@ -22,7 +34,7 @@ export default function ContactUs() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        Get in Touch with Us
+        {data?.contact?.title}
       </motion.h2>
 
       {/* Contact Details Section */}
@@ -39,7 +51,7 @@ export default function ContactUs() {
               <FaMapMarkerAlt className="text-blue-600" /> Visit Our Campus
             </h3>
             <p className="text-gray-700 mt-2">
-              123 School Street, Education City, India
+              {`${data?.contact?.address?.street} ${data?.contact?.address?.state} ${data?.contact?.address?.zipCode}`}
             </p>
           </div>
           <div>
@@ -47,7 +59,9 @@ export default function ContactUs() {
               <FaPhoneAlt className="text-blue-600" /> Call Our Office
             </h3>
             <p className="text-gray-700 mt-2">
-              +91 98765 43210 / +91 87654 32109
+              {data?.contact?.phoneNumbers?.map((obj, index) => (
+                <li key={index}>{obj?.number}</li>
+              ))}
             </p>
           </div>
           <div>
@@ -63,7 +77,11 @@ export default function ContactUs() {
             <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
               <FaEnvelope className="text-blue-600" /> Drop Us an Email
             </h3>
-            <p className="text-gray-700 mt-2">contact@ourschool.com</p>
+            <p className="text-gray-700 mt-2">
+              {data?.contact?.emails?.map((obj, index) => (
+                <li key={index}>{obj?.email}</li>
+              ))}
+            </p>
           </div>
         </motion.div>
       </div>
@@ -78,7 +96,7 @@ export default function ContactUs() {
         <iframe
           title="Google Maps Location"
           className="w-full h-[350px] rounded-2xl border border-gray-300"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.083036038793!2d-122.41941548468169!3d37.77492927975909!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c2f2f3f5d%3A0xb1e6350e1f3e10f9!2sOur%20School!5e0!3m2!1sen!2sin!4v1633029859404!5m2!1sen!2sin"
+          src={data?.contact?.address?.googleMapLink}
           allowFullScreen=""
           loading="lazy"
         ></iframe>

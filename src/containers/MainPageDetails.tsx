@@ -9,8 +9,6 @@ export const MainPageDetails = ({
   images,
   schoolName,
   welcomeMessage,
-  aboutText,
-  enrollmentStats,
   achievements,
   features,
 }) => {
@@ -108,7 +106,7 @@ export const MainPageDetails = ({
             {/* Card 1: Students Enrolled */}
             <div className="relative bg-gradient-to-r from-blue-700 to-blue-500 text-white p-10 rounded-2xl flex flex-col items-center min-h-[200px]">
               <span className="text-7xl sm:text-8xl font-extrabold relative z-10 text-black drop-shadow-lg">
-                <Counter end={1500} duration={3} />
+                <Counter end={1500} duration={2000} />
               </span>
               <h3 className="text-2xl font-semibold tracking-wide mt-2 text-center text-black drop-shadow-md">
                 Students Enrolled
@@ -123,7 +121,7 @@ export const MainPageDetails = ({
             {/* Card 2: Students Graduated */}
             <div className="relative bg-gradient-to-r from-green-700 to-green-500 text-white p-10 rounded-2xl flex flex-col items-center min-h-[200px]">
               <span className="text-7xl sm:text-8xl font-extrabold relative z-10 text-black drop-shadow-lg">
-                <Counter end={5000} duration={3} />
+                <Counter end={1500} duration={2000} />
               </span>
               <h3 className="text-2xl font-semibold tracking-wide mt-2 text-center text-black drop-shadow-md">
                 Students Graduated
@@ -138,7 +136,7 @@ export const MainPageDetails = ({
             {/* Card 3: Awards Won */}
             <div className="relative bg-gradient-to-r from-yellow-600 to-yellow-400 text-white p-10 rounded-2xl flex flex-col items-center min-h-[200px]">
               <span className="text-7xl sm:text-8xl font-extrabold relative z-10 text-black drop-shadow-lg">
-                <Counter end={50} duration={3} />
+                <Counter end={1500} duration={2000} />
               </span>
               <h3 className="text-2xl font-semibold tracking-wide mt-2 text-center text-black drop-shadow-md">
                 Awards Won

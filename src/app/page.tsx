@@ -1,8 +1,9 @@
 "use client";
 
-import { themeConfig } from "@/config/themeConfig";
 import { MainPageDetails } from "@/containers/MainPageDetails";
 import { useEffect, useState } from "react";
+import { fetchMainPageData } from "./utils/apiHelpers";
+import LoadingScreen from "@/components/ui/loader";
 
 const images = [
   { src: "/school1.png", alt: "Award Ceremony" },
@@ -19,21 +20,6 @@ const enrollmentStats = [
   },
   { end: 5000, duration: 3000, title: "Students Graduated", icon: "🎓" },
   { end: 50, duration: 3000, title: "Awards Won", icon: "🏆" },
-];
-
-const achievements = [
-  {
-    title: "100% Results",
-    description: "Consistent academic excellence in board exams.",
-  },
-  {
-    title: "Award-Winning Programs",
-    description: "Recognized for innovative teaching methods.",
-  },
-  {
-    title: "Top Sports Team",
-    description: "Winners of inter-school championships.",
-  },
 ];
 
 const features = [
@@ -55,20 +41,31 @@ const features = [
 ];
 
 export default function Home() {
-  const selectedTheme = themeConfig["premiumBlueGold1"];
+  const [mainPageData, setMainPageData] = useState<any>(null);
+  const [loading, setIsLoading] = useState<boolean>(true);
 
+  useEffect(() => {
+    fetchMainPageData().then((res) => {
+      const data = res?.response;
+      setIsLoading(false);
+      //console.log("data", data);
+      setMainPageData(data);
+    });
+  }, []);
+  console.log("mainPageData", mainPageData);
   return (
     <>
-      <MainPageDetails
-        images={images}
-        schoolName="Bright Future School"
-        welcomeMessage="Nurturing future leaders with quality education and holistic development."
-        aboutText="At Bright Future School, we believe in empowering students with a strong academic foundation, life skills, and values that prepare them for a successful future. With a commitment to excellence, we provide a safe and nurturing environment where every student can thrive."
-        enrollmentStats={enrollmentStats}
-        achievements={achievements}
-        features={features}
-        theme={selectedTheme}
-      />
+      {loading ? (
+        <LoadingScreen />
+      ) : (
+        <MainPageDetails
+          images={mainPageData?.eventImages}
+          schoolName={mainPageData?.about?.name}
+          welcomeMessage={mainPageData?.description}
+          achievements={mainPageData?.achievement}
+          features={features}
+        />
+      )}
     </>
   );
 }

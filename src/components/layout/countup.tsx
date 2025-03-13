@@ -2,32 +2,31 @@
 
 import { useState, useEffect, useRef } from "react";
 
-export function Counter({ end, duration }) {
+export function Counter({ end, duration = 2000 }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
-  const intervalRef = useRef(null); // Store interval reference
+  const hasAnimated = useRef(false); // Prevents re-running
+  const intervalRef = useRef(null);
 
   useEffect(() => {
-    let observer = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
-          if (intervalRef.current) clearInterval(intervalRef.current); // Clear existing interval
-          setCount(0); // Reset count when in view
+        if (entries[0].isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true; // Ensure it runs only once
+          setCount(0);
 
           let start = 0;
-          const stepTime = 16; // ~60 FPS
-          const totalFrames = duration / stepTime;
-          const increment = end / totalFrames;
+          const stepTime = 50; // Slower for smoother effect
+          const totalSteps = duration / stepTime;
+          const increment = end / totalSteps;
 
           intervalRef.current = setInterval(() => {
             start += increment;
-            setCount((prev) => {
-              if (prev >= end) {
-                clearInterval(intervalRef.current);
-                return end;
-              }
-              return Math.ceil(start);
-            });
+            setCount(Math.min(Math.ceil(start), end));
+
+            if (start >= end) {
+              clearInterval(intervalRef.current);
+            }
           }, stepTime);
         }
       },
@@ -38,7 +37,7 @@ export function Counter({ end, duration }) {
 
     return () => {
       observer.disconnect();
-      if (intervalRef.current) clearInterval(intervalRef.current); // Cleanup interval
+      if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, [end, duration]);
 
