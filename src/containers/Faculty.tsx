@@ -77,7 +77,7 @@ export default function Faculty() {
               {principal.description}
             </p>
             <blockquote className="mt-6 text-indigo-700 font-semibold italic border-l-4 border-indigo-500 pl-4">
-              "{principal.quote}"
+              {principal.quote}
             </blockquote>
           </div>
         </motion.div>
@@ -95,9 +95,11 @@ export default function Faculty() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
             >
-              <img
+              <Image
                 src={member.image}
                 alt={member.name}
+                height={5}
+                width={5}
                 className="w-full h-40 object-cover rounded-t-lg"
               />
               <div className="mt-6 text-center">
