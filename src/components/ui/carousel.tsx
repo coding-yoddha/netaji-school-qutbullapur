@@ -3,13 +3,16 @@ import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 
-interface Image {
-  src: string;
-  alt: string;
+interface ImageData {
+  contentType: string;
+  data: string;
 }
 
 interface CarouselProps {
-  images: Image[];
+  images: {
+    image: ImageData;
+    description: string;
+  }[];
 }
 
 export const Carousel: React.FC<CarouselProps> = ({ images }) => {
@@ -18,9 +21,6 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
   );
 
   const [emblaRef] = useEmblaCarousel({ loop: true }, [autoplayRef.current]);
-  const getUrl = (blob) => {
-    return URL.createObjectURL(blob);
-  };
 
   return (
     <div className="overflow-hidden" ref={emblaRef}>
@@ -31,7 +31,7 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
             className="min-w-full flex justify-center items-center"
           >
             <Image
-              src={`data:${img?.image.contentType};base64,${img.image.data}`}
+              src={`data:${img.image.contentType};base64,${img.image.data}`}
               alt={img.description}
               priority={true}
               height={100}
