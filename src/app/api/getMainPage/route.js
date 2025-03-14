@@ -1,10 +1,10 @@
 import connectToDB from "../../../../config/database";
-import School from "@/models/School";
-import Highlight from "@/models/Highlight";
-import MainPageImage from "@/models/MainPageImage";
-import Achievement from "@/models/Achievement";
-import Review from "@/models/Review";
-import Contact from "@/models/Contact";
+import School from "@/models/school";
+import Highlight from "@/models/highlight";
+import MainPageImage from "@/models/mainPageImage";
+import Achievement from "@/models/achievement";
+import Review from "@/models/review";
+import Contact from "@/models/contact";
 import { NextResponse } from "next/server";
 
 export async function GET() {
