@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { MainPageDetails } from "@/containers/MainPageDetails";
 import { useEffect, useState } from "react";
 import { fetchMainPageData } from "./utils/apiHelpers";
@@ -15,14 +15,16 @@ interface MainPageDataType {
 }
 
 export default function Home() {
-  const [mainPageData, setMainPageData] = useState<MainPageDataType | null>(null);
+  const [mainPageData, setMainPageData] = useState<MainPageDataType | null>(
+    null
+  );
   const [loading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetchMainPageData().then((res) => {
       const data = res?.response;
+      setMainPageData(data as MainPageDataType);
       setIsLoading(false);
-      setMainPageData(data as MainPageDataType); // Type assertion here
     });
   }, []);
 

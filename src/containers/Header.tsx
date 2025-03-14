@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FaBars,
   FaTimes,
@@ -12,110 +12,12 @@ import {
 } from "react-icons/fa";
 import appLogo from "../../public/schoollogo.png";
 
-const styles = {
-  headerStyle: {
-    backgroundImage: "linear-gradient(to right, #0F172A, #1E40AF)",
-    color: "white",
-    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
-    padding: "1rem",
-    position: "relative",
-    zIndex: 100,
-  },
-  containerStyle: {
-    width: "100%",
-    maxWidth: "1200px",
-    padding: "0 24px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    margin: "0 auto",
-  },
-  navLinkStyle: {
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    marginRight: "24px",
-    color: "white",
-    fontSize: "18px",
-    fontWeight: "500",
-    textDecoration: "none",
-    transition: "all 0.3s ease",
-    position: "relative",
-  },
-  navLinkHover: {
-    textDecoration: "underline",
-    color: "#FACC15",
-  },
-  sidebarStyle: {
-    position: "fixed",
-    top: 0,
-    right: 0,
-    backgroundColor: "white",
-    color: "#333",
-    width: "256px",
-    padding: "24px",
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-    height: "100%",
-    zIndex: 50,
-    overflowY: "auto" as "const",
-    transform: "translateX(0)",
-    transition: "transform 0.3s ease-in-out",
-  },
-  mobileToggle: {
-    cursor: "pointer",
-  },
-};
-
-const Sidebar = ({ isMobileMenuOpen, toggleMobileMenu }) => {
-  return (
-    isMobileMenuOpen && (
-      <div style={styles.sidebarStyle}>
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <button
-            onClick={toggleMobileMenu}
-            style={{
-              fontSize: "24px",
-              background: "transparent",
-              border: "none",
-              cursor: "pointer",
-              color: "#1E40AF",
-            }}
-            aria-label="Close Sidebar"
-          >
-            <FaTimes />
-          </button>
-        </div>
-        <nav style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-          <Link
-            href="/about"
-            style={{ ...styles.navLinkStyle, color: "#1E40AF" }}
-          >
-            <FaUser style={{ color: "#1E40AF" }} /> About Us
-          </Link>
-          <Link
-            href="/contact"
-            style={{ ...styles.navLinkStyle, color: "#1E40AF" }}
-          >
-            <FaEnvelope style={{ color: "#1E40AF" }} /> Contact
-          </Link>
-          <Link
-            href="/faculty"
-            style={{ ...styles.navLinkStyle, color: "#1E40AF" }}
-          >
-            <FaChalkboardTeacher style={{ color: "#1E40AF" }} /> Faculty
-          </Link>
-        </nav>
-      </div>
-    )
-  );
-};
-
 const Header = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   const toggleMobileMenu = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
+    setMobileMenuOpen((prev) => !prev);
   };
 
   const handleResize = () => {
@@ -133,50 +35,104 @@ const Header = () => {
   }, []);
 
   return (
-    <header style={styles.headerStyle}>
-      <div style={styles.containerStyle}>
-        <Link href="/" style={{ display: "flex", alignItems: "center" }}>
+    <header className="bg-gradient-to-r from-gray-900 to-blue-900 text-white shadow-lg py-4 relative z-50">
+      <div className="max-w-6xl mx-auto flex justify-between items-center px-4">
+        {/* Logo & School Name */}
+        <Link href="/" className="flex items-center">
           <Image
             src={appLogo}
             alt="School Logo"
-            style={{ borderRadius: "50%", width: "100px", height: "100px" }}
+            width={80}
+            height={80}
+            className="rounded-full"
           />
-          <h1
-            style={{ fontSize: "28px", fontWeight: "bold", marginLeft: "1rem" }}
-          >
+          <h1 className="text-xl sm:text-2xl font-bold ml-3">
             Netaji High School
           </h1>
         </Link>
 
+        {/* Desktop Navigation */}
         {!isMobile && (
-          <nav style={{ display: "flex" }}>
-            <Link href="/about" style={styles.navLinkStyle}>
+          <nav className="hidden sm:flex space-x-8">
+            <Link
+              href="/about"
+              className="flex items-center gap-2 text-lg font-medium hover:text-yellow-400 transition"
+            >
               <FaUser /> About Us
             </Link>
-            <Link href="/contact" style={styles.navLinkStyle}>
+            <Link
+              href="/contact"
+              className="flex items-center gap-2 text-lg font-medium hover:text-yellow-400 transition"
+            >
               <FaEnvelope /> Contact
             </Link>
-            <Link href="/faculty" style={styles.navLinkStyle}>
+            <Link
+              href="/faculty"
+              className="flex items-center gap-2 text-lg font-medium hover:text-yellow-400 transition"
+            >
               <FaChalkboardTeacher /> Faculty
             </Link>
           </nav>
         )}
 
+        {/* Mobile Menu Toggle */}
         {isMobile && (
-          <div onClick={toggleMobileMenu} style={styles.mobileToggle}>
-            {isMobileMenuOpen ? (
-              <FaTimes style={{ color: "white", fontSize: "24px" }} />
-            ) : (
-              <FaBars style={{ color: "white", fontSize: "24px" }} />
-            )}
-          </div>
+          <button
+            onClick={toggleMobileMenu}
+            className="text-white text-2xl focus:outline-none"
+          >
+            {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
         )}
       </div>
+
+      {/* Mobile Sidebar */}
       {isMobileMenuOpen && (
-        <Sidebar
-          isMobileMenuOpen={isMobileMenuOpen}
-          toggleMobileMenu={toggleMobileMenu}
-        />
+        <div
+          className="fixed inset-0  bg-opacity-50 z-40"
+          onClick={toggleMobileMenu}
+        >
+          <div
+            className="fixed top-0 right-0 w-64 h-full bg-white text-gray-800 shadow-lg p-6 transform transition-transform duration-300 ease-in-out"
+            style={{
+              transform: isMobileMenuOpen
+                ? "translateX(0)"
+                : "translateX(100%)",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={toggleMobileMenu}
+              className="text-2xl text-blue-800 absolute top-4 right-4"
+            >
+              <FaTimes />
+            </button>
+
+            <nav className="flex flex-col space-y-6 mt-10">
+              <Link
+                href="/about"
+                onClick={toggleMobileMenu}
+                className="flex items-center gap-3 text-lg font-medium text-blue-800 hover:text-yellow-500 transition"
+              >
+                <FaUser /> About Us
+              </Link>
+              <Link
+                href="/contact"
+                onClick={toggleMobileMenu}
+                className="flex items-center gap-3 text-lg font-medium text-blue-800 hover:text-yellow-500 transition"
+              >
+                <FaEnvelope /> Contact
+              </Link>
+              <Link
+                href="/faculty"
+                onClick={toggleMobileMenu}
+                className="flex items-center gap-3 text-lg font-medium text-blue-800 hover:text-yellow-500 transition"
+              >
+                <FaChalkboardTeacher /> Faculty
+              </Link>
+            </nav>
+          </div>
+        </div>
       )}
     </header>
   );

@@ -5,6 +5,7 @@ import { Counter } from "../components/layout/countup";
 import schoolIllustration from "../../public/schoolImg1.svg";
 import rocketIllustration from "../../public/rocket.svg";
 import Image from "next/image";
+import EventsSection from "@/components/layout/events";
 
 export const MainPageDetails = ({
   images,
@@ -49,7 +50,8 @@ export const MainPageDetails = ({
           transition={{ duration: 1 }}
         >
           <h2 className="text-5xl sm:text-6xl font-bold mb-6 drop-shadow-lg">
-            Welcome to <span style={{ color: "#1e90ff" }}>{schoolName}</span>
+            Welcome to{" "}
+            <span style={{ color: "#1e90ff" }}>{"Netaji High School"}</span>
           </h2>
           <p className="text-xl mb-6 text-gray-700 font-medium">
             {welcomeMessage}
@@ -64,6 +66,8 @@ export const MainPageDetails = ({
           </motion.a>
         </motion.div>
       </section>
+
+      <EventsSection />
 
       <section className="py-16 bg-white relative overflow-hidden w-full">
         <div className="text-center w-full max-w-none px-6 sm:px-12 lg:px-20">
@@ -206,30 +210,29 @@ export const MainPageDetails = ({
                 className="p-8 bg-white/30 backdrop-blur-md rounded-2xl shadow-xl border border-blue-300/50 flex flex-col items-center text-center transition-transform duration-500 hover:scale-105 hover:shadow-2xl relative"
                 whileHover={{ scale: 1.08 }}
               >
-                
                 <div className="text-6xl mb-4 text-blue-500 drop-shadow-lg">
-                <Image
-                      src={`data:${feature?.image.contentType};base64,${feature.image.data}`}
-                      alt={feature.description}
-                      priority={true}
-                      height={2}
-                      width={2}
-                      className="w-full aspect-[16/9] object-cover rounded-lg shadow-lg"
-                    />
+                  <Image
+                    src={`data:${feature?.image.contentType};base64,${feature.image.data}`}
+                    alt={feature.description}
+                    priority={true}
+                    height={2}
+                    width={2}
+                    className="w-full aspect-[16/9] object-cover rounded-lg shadow-lg"
+                  />
                 </div>
                 <h3 className="text-2xl font-semibold mb-2 text-gray-800">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600">{feature.description}</p>
                 <div className="absolute bottom-2 right-4 text-6xl opacity-10">
-                <Image
-                      src={`data:${feature?.image.contentType};base64,${feature.image.data}`}
-                      alt={feature.description}
-                      priority={true}
-                      height={2}
-                      width={2}
-                      className="w-full aspect-[16/9] object-cover rounded-lg shadow-lg"
-                    />
+                  <Image
+                    src={`data:${feature?.image.contentType};base64,${feature.image.data}`}
+                    alt={feature.description}
+                    priority={true}
+                    height={2}
+                    width={2}
+                    className="w-full aspect-[16/9] object-cover rounded-lg shadow-lg"
+                  />
                 </div>
               </motion.div>
             ))}
