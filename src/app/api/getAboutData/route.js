@@ -1,6 +1,6 @@
 import connectToDB from "../../../../config/database";
 import About from "@/models/About";
-import Highlight from "@/models/Highlight";
+import Highlight from "@/models/highlight";
 import Faculty from "@/models/faculty"
 import { NextResponse } from "next/server";
 
