@@ -10,8 +10,8 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
           {/* Branding */}
           <div>
-            <h2 className="text-3xl font-bold">Your School Name</h2>
-            <p className="text-gray-300 mt-2">"Shaping Bright Futures"</p>
+            <h2 className="text-3xl font-bold">Netaji High School</h2>
+            <p className="text-gray-300 mt-2">Shaping Bright Futures</p>
           </div>
 
           {/* Social Media Links */}
