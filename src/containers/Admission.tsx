@@ -10,7 +10,7 @@ export default function AdmissionsPage() {
   };
 
   return (
-    <div className="container mx-auto p-8">
+    <div className="relative bg-gradient-to-b from-blue-50 to-white py-16 px-6 sm:px-12 lg:px-20">
       <h1 className="text-4xl font-bold mb-6 font-extrabold text-gray-900 leading-tight">School Admissions</h1>
       {!submitted ? (
         <>
