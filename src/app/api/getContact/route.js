@@ -3,7 +3,7 @@ import Contact from "@/models/Contact";
 import Faculty from "@/models/faculty";
 import { NextResponse } from "next/server";
 
-export async function GET(req) {
+export async function GET() {
   try {
     await connectToDB();
     const contact = await Contact.find();
