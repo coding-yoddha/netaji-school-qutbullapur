@@ -7,19 +7,33 @@ import Review from "@/models/Review";
 import Contact from "@/models/Contact";
 import { NextResponse } from "next/server";
 
-export async function GET(req) {
+export async function GET() {
   try {
     await connectToDB();
 
     const data = await School.find();
-    const hightlights = await Highlight.find({ showInMain: true });
-    const mainPageImage = await MainPageImage.find();
-    const formattedEvents = mainPageImage.map((event) => ({
-      title: event.title,
-      description: event.description,
-      thumbnailUrl: event.thumbnailUrl,
-      order: event.order,
-      isActive: event.isActive,
+    const schoolData = {
+      ...data[0]._doc,
+      logo: data[0]
+      ? {
+          data: data[0].logo.data.toString("base64"), // Convert Buffer to Base64 if present
+          contentType: data[0].logo.contentType,
+        }
+      : undefined,
+    };
+    let hightlights = await Highlight.find({ showInMain: true });
+    hightlights = hightlights.map((hightlight) => ({
+      ...hightlight._doc,
+      image: hightlight.image
+        ? {
+            data: hightlight.image.data.toString("base64"), // Convert Buffer to Base64 if present
+            contentType: hightlight.image.contentType,
+          }
+        : undefined, // If image is not present, set it as undefined
+    }));
+    let mainPageImage = await MainPageImage.find();
+    mainPageImage = mainPageImage.map((event) => ({
+      ...event._doc,
       image: event.image
         ? {
             data: event.image.data.toString("base64"), // Convert Buffer to Base64 if present
@@ -31,9 +45,9 @@ export async function GET(req) {
     const review = await Review.find();
     const contact = await Contact.find();
     const response = {
-      about: data[0],
+      schoolData: schoolData,
       hightlights,
-      eventImages: formattedEvents,
+      eventImages: mainPageImage,
       achievement,
       review,
       socialMedia: contact[0].socialMedia,
