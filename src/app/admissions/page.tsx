@@ -1,8 +1,8 @@
-import AboutUs from "@/containers/About";
+import AdmissionsPage from "@/containers/Admission";
 import React from "react";
 
 const page = () => {
-  return <h1> Comming soon ... </h1>;
+  return <AdmissionsPage/>;
 };
 
 export default page;
