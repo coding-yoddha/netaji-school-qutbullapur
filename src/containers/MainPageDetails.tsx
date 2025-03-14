@@ -4,6 +4,7 @@ import { Carousel } from "../components/ui/carousel";
 import { Counter } from "../components/layout/countup";
 import schoolIllustration from "../../public/schoolImg1.svg";
 import rocketIllustration from "../../public/rocket.svg";
+import Image from "next/image";
 
 export const MainPageDetails = ({
   images,
@@ -121,7 +122,7 @@ export const MainPageDetails = ({
             {/* Card 2: Students Graduated */}
             <div className="relative bg-gradient-to-r from-green-700 to-green-500 text-white p-10 rounded-2xl flex flex-col items-center min-h-[200px]">
               <span className="text-7xl sm:text-8xl font-extrabold relative z-10 text-black drop-shadow-lg">
-                <Counter end={1500} duration={2000} />
+                <Counter end={5000} duration={2000} />
               </span>
               <h3 className="text-2xl font-semibold tracking-wide mt-2 text-center text-black drop-shadow-md">
                 Students Graduated
@@ -136,7 +137,7 @@ export const MainPageDetails = ({
             {/* Card 3: Awards Won */}
             <div className="relative bg-gradient-to-r from-yellow-600 to-yellow-400 text-white p-10 rounded-2xl flex flex-col items-center min-h-[200px]">
               <span className="text-7xl sm:text-8xl font-extrabold relative z-10 text-black drop-shadow-lg">
-                <Counter end={1500} duration={2000} />
+                <Counter end={50} duration={2000} />
               </span>
               <h3 className="text-2xl font-semibold tracking-wide mt-2 text-center text-black drop-shadow-md">
                 Awards Won
@@ -205,15 +206,30 @@ export const MainPageDetails = ({
                 className="p-8 bg-white/30 backdrop-blur-md rounded-2xl shadow-xl border border-blue-300/50 flex flex-col items-center text-center transition-transform duration-500 hover:scale-105 hover:shadow-2xl relative"
                 whileHover={{ scale: 1.08 }}
               >
+                
                 <div className="text-6xl mb-4 text-blue-500 drop-shadow-lg">
-                  {feature.icon}
+                <Image
+                      src={`data:${feature?.image.contentType};base64,${feature.image.data}`}
+                      alt={feature.description}
+                      priority={true}
+                      height={2}
+                      width={2}
+                      className="w-full aspect-[16/9] object-cover rounded-lg shadow-lg"
+                    />
                 </div>
                 <h3 className="text-2xl font-semibold mb-2 text-gray-800">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600">{feature.description}</p>
                 <div className="absolute bottom-2 right-4 text-6xl opacity-10">
-                  {feature.icon}
+                <Image
+                      src={`data:${feature?.image.contentType};base64,${feature.image.data}`}
+                      alt={feature.description}
+                      priority={true}
+                      height={2}
+                      width={2}
+                      className="w-full aspect-[16/9] object-cover rounded-lg shadow-lg"
+                    />
                 </div>
               </motion.div>
             ))}
