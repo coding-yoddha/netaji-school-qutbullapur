@@ -57,7 +57,7 @@ const styles = {
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
     height: "100%",
     zIndex: 50,
-    overflowY: "auto" as "auto",
+    overflowY: "auto" as "const",
     transform: "translateX(0)",
     transition: "transform 0.3s ease-in-out",
   },
@@ -144,7 +144,7 @@ const Header = () => {
           <h1
             style={{ fontSize: "28px", fontWeight: "bold", marginLeft: "1rem" }}
           >
-            Bright Future School
+            Netaji High School
           </h1>
         </Link>
 
