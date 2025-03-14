@@ -1,5 +1,5 @@
 import connectToDB from "../../../../config/database";
-import Contact from "@/models/Contact";
+import Contact from "@/models/contact";
 import Faculty from "@/models/faculty";
 import { NextResponse } from "next/server";
 
