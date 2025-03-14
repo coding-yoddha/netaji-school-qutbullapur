@@ -1,6 +1,8 @@
+"use client"
+import { useState } from 'react';
 import Form from "../components/layout/form";
 
-const AdmissionsPage: FC = () => {
+export default function AdmissionsPage() {
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   const handleFormSubmit = () => {
@@ -26,4 +28,3 @@ const AdmissionsPage: FC = () => {
   );
 };
 
-export default AdmissionsPage;
