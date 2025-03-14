@@ -21,7 +21,7 @@ export async function GET() {
         }
       : undefined,
     };
-    let hightlights = [];//await Highlight.find({ showInMain: true });
+    let hightlights = await Highlight.find({ showInMain: true });
     hightlights = hightlights.map((hightlight) => ({
       ...hightlight._doc,
       image: hightlight.image
@@ -31,7 +31,7 @@ export async function GET() {
           }
         : undefined, // If image is not present, set it as undefined
     }));
-    let mainPageImage = [];//await MainPageImage.find();
+    let mainPageImage = await MainPageImage.find();
     mainPageImage = mainPageImage.map((event) => ({
       ...event._doc,
       image: event.image
