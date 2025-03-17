@@ -10,7 +10,7 @@ import {
   FaEnvelope,
   FaChalkboardTeacher,
 } from "react-icons/fa";
-import appLogo from "../../public/schoollogo.png";
+import appLogo from "../../public/schoolLogo1.png";
 
 const Header = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
