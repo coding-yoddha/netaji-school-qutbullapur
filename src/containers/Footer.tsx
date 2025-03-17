@@ -11,31 +11,17 @@ export default function Footer() {
           {/* Branding */}
           <div>
             <h2 className="text-3xl font-bold">Netaji High School</h2>
-            <p className="text-gray-300 mt-2">Shaping Bright Futures</p>
+            <p className="text-gray-300 mt-2">Knowledge is Power</p>
           </div>
 
           {/* Social Media Links */}
           <div className="flex gap-6 mt-6 md:mt-0">
             <Link
-              href="https://youtube.com"
+              href="https://www.youtube.com/@netajihighschool2413"
               target="_blank"
               className="text-white hover:text-red-500 transition"
             >
               <FaYoutube size={28} />
-            </Link>
-            <Link
-              href="https://facebook.com"
-              target="_blank"
-              className="text-white hover:text-blue-400 transition"
-            >
-              <FaFacebookF size={28} />
-            </Link>
-            <Link
-              href="https://instagram.com"
-              target="_blank"
-              className="text-white hover:text-pink-500 transition"
-            >
-              <FaInstagram size={28} />
             </Link>
           </div>
         </div>
@@ -46,7 +32,7 @@ export default function Footer() {
         {/* Quick Links */}
         <div className="flex flex-col sm:flex-row justify-between text-gray-300 text-sm">
           <p>
-            &copy; {new Date().getFullYear()} Your School. All Rights Reserved.
+            &copy; {new Date().getFullYear()} Netaji High School. All Rights Reserved.
           </p>
           <div className="flex gap-4 mt-4 sm:mt-0">
             <Link href="/about" className="hover:text-white transition">
