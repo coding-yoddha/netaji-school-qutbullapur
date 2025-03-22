@@ -52,7 +52,7 @@ export default function ContactUs() {
               <FaMapMarkerAlt className="text-blue-600" /> Visit Our Campus
             </h3>
             <p className="text-gray-700 mt-2">
-              {`${data?.contact?.address?.street} ${data?.contact?.address?.state} ${data?.contact?.address?.zipCode}`}
+              {`${data?.contact?.address?.street} ${data?.contact?.address?.city} ${data?.contact?.address?.state} ${data?.contact?.address?.zipCode}`}
             </p>
           </div>
           <div>
