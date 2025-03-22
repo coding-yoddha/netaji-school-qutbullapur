@@ -39,7 +39,7 @@ export default function AboutUs() {
             height={350}
           />
           <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md">
-            Established in 1985
+            Established in 2010
           </div>
         </div>
         <div className="md:w-1/2 text-center md:text-left">
