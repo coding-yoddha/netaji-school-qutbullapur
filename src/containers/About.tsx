@@ -44,12 +44,10 @@ export default function AboutUs() {
         </div>
         <div className="md:w-1/2 text-center md:text-left">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">
-            Our Legacy & Values
+            OUR VISION
           </h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            Since 1985, our school has been a beacon of knowledge, producing
-            outstanding students who go on to achieve great things. We uphold
-            the highest standards of education, character, and innovation.
+            We, the educators of Netaji High School, Subhash Nagar, envision a future where our students become compassionate, thoughtful, and engaged global citizens, equipped with the knowledge, skills, and moral values necessary to make a positive impact in the world. We strive to create a nurturing and inclusive environment that fosters academic excellence, creativity, and critical thinking.
           </p>
           <blockquote className="italic text-lg text-gray-600 border-l-4 border-gold-500 pl-4">
             "Education is not the filling of a pail, but the lighting of a
