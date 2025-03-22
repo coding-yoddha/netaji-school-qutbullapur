@@ -70,7 +70,7 @@ export default function ContactUs() {
               <FaClock className="text-blue-600" /> School Timings
             </h3>
             <p className="text-gray-700 mt-2">
-              Monday - Saturday: 8:00 AM - 3:00 PM
+              Monday - Saturday: 8:30 am to 5:00 pm
             </p>
             <p className="text-gray-700">Sunday: Closed</p>
           </div>
