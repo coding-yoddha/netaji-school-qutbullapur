@@ -1,20 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Spinner, Typography } from "@material-tailwind/react";
 import { motion } from "framer-motion";
 
 export default function LoadingScreen() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate loading delay
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (!loading) return null; // Hide once loading is done
-
   return (
     <motion.div
       className="fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-white z-50"

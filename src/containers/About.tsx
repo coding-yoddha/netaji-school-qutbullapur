@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import schoolBuilding from "../../public/schoolBuilding.jpg";
+import founderImage from "../../public/founderOne.jpeg";
+import founderImage1 from "../../public/founderTwo.jpeg";
 
 export default function AboutUs() {
   return (
@@ -43,11 +45,14 @@ export default function AboutUs() {
           </div>
         </div>
         <div className="md:w-1/2 text-center md:text-left">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
-            OUR VISION
-          </h2>
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">OUR VISION</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            We, the educators of Netaji High School, Subhash Nagar, envision a future where our students become compassionate, thoughtful, and engaged global citizens, equipped with the knowledge, skills, and moral values necessary to make a positive impact in the world. We strive to create a nurturing and inclusive environment that fosters academic excellence, creativity, and critical thinking.
+            We, the educators of Netaji High School, Subhash Nagar, envision a
+            future where our students become compassionate, thoughtful, and
+            engaged global citizens, equipped with the knowledge, skills, and
+            moral values necessary to make a positive impact in the world. We
+            strive to create a nurturing and inclusive environment that fosters
+            academic excellence, creativity, and critical thinking.
           </p>
           <blockquote className="italic text-lg text-gray-600 border-l-4 border-gold-500 pl-4">
             "Education is not the filling of a pail, but the lighting of a
@@ -56,6 +61,66 @@ export default function AboutUs() {
         </div>
       </motion.div>
 
+      <motion.div
+        className="mt-16 flex flex-col md:flex-row items-center gap-8 bg-white p-10 rounded-2xl shadow-xl border border-gray-200"
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="md:w-1/3 flex justify-center">
+          <Image
+            src={founderImage1}
+            alt="Founder"
+            className="rounded-full shadow-lg border-4 border-gold-500"
+            width={300}
+            height={200}
+          />
+        </div>
+        <div className="md:w-2/3 text-center md:text-left">
+          <h2 className="text-4xl font-bold text-gray-800 mb-6">Our Founder</h2>
+          <blockquote className="italic text-lg text-gray-700 border-l-4 border-gold-500 pl-6 leading-relaxed max-w-3xl mx-auto md:mx-0">
+            "Shri Mallesham is the chairman of Satgyan Educational Institutions.
+            Netaji High School, established in 2010, is one of the branches of
+            Satgyan Educational Institutions. Under his visionary guidance, the
+            school continues to make rapid progress. We wish him a long and
+            healthy life."
+          </blockquote>
+          <p className="text-gray-800 font-bold mt-6">- Ch. Mallesham</p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="mt-16 flex flex-col md:flex-row items-center gap-8 bg-white p-10 rounded-2xl shadow-xl border border-gray-200"
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="md:w-1/3 flex justify-center">
+          <Image
+            src={founderImage}
+            alt="Founder"
+            className="rounded-full shadow-lg border-4 border-gold-500"
+            width={350}
+            height={220}
+          />
+        </div>
+        <div className="md:w-2/3 text-center md:text-left">
+          <h2 className="text-4xl font-bold text-gray-800 mb-6">
+            Message from Our Founder
+          </h2>
+          <blockquote className="italic text-lg text-gray-700 border-l-4 border-gold-500 pl-6 leading-relaxed max-w-3xl mx-auto md:mx-0">
+            "A journey of a thousand miles begins with a single step. Our school
+            began in 2010-2011 with 85 students, and today, we proudly educate
+            approximately 1400 students. Committed to excellence, Netaji High
+            School fosters integrity, discipline, and lifelong learning. Our
+            mission is to develop knowledgeable, skilled, and humble individuals
+            who contribute meaningfully to society. Education is not about
+            filling the mind with facts but nurturing character, expanding
+            intellect, and empowering students to stand on their own feet."
+          </blockquote>
+          <p className="text-gray-800 font-bold mt-6">- Ch. Mallesham</p>
+        </div>
+      </motion.div>
       {/* Campus & Facilities */}
       <motion.div
         className="mt-16 text-center"
