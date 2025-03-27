@@ -85,7 +85,7 @@ export default function AboutUs() {
             school continues to make rapid progress. We wish him a long and
             healthy life."
           </blockquote>
-          <p className="text-gray-800 font-bold mt-6">- Ch. Mallesham</p>
+          <p className="text-gray-800 font-bold mt-6">- Chintala Mallesham</p>
         </div>
       </motion.div>
 
@@ -106,7 +106,7 @@ export default function AboutUs() {
         </div>
         <div className="md:w-2/3 text-center md:text-left">
           <h2 className="text-4xl font-bold text-gray-800 mb-6">
-            Message from Our Founder
+            Our Founder
           </h2>
           <blockquote className="italic text-lg text-gray-700 border-l-4 border-gold-500 pl-6 leading-relaxed max-w-3xl mx-auto md:mx-0">
             "A journey of a thousand miles begins with a single step. Our school
@@ -118,7 +118,7 @@ export default function AboutUs() {
             filling the mind with facts but nurturing character, expanding
             intellect, and empowering students to stand on their own feet."
           </blockquote>
-          <p className="text-gray-800 font-bold mt-6">- Ch. Mallesham</p>
+          <p className="text-gray-800 font-bold mt-6">- Chintala Mahesh Kumar</p>
         </div>
       </motion.div>
       {/* Campus & Facilities */}
