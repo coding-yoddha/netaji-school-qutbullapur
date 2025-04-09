@@ -9,6 +9,7 @@ import {
   FaUser,
   FaEnvelope,
   FaChalkboardTeacher,
+  FaBriefcase, // Added for Careers icon
 } from "react-icons/fa";
 import appLogo from "../../public/schoolLogo1.png";
 
@@ -72,6 +73,12 @@ const Header = () => {
             >
               <FaChalkboardTeacher /> Faculty
             </Link>
+            <Link
+              href="/careers"
+              className="flex items-center gap-2 text-lg font-medium hover:text-yellow-400 transition"
+            >
+              <FaBriefcase /> Careers
+            </Link>
           </nav>
         )}
 
@@ -89,7 +96,7 @@ const Header = () => {
       {/* Mobile Sidebar */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0  bg-opacity-50 z-40"
+          className="fixed inset-0 bg-opacity-50 z-40"
           onClick={toggleMobileMenu}
         >
           <div
@@ -129,6 +136,13 @@ const Header = () => {
                 className="flex items-center gap-3 text-lg font-medium text-blue-800 hover:text-yellow-500 transition"
               >
                 <FaChalkboardTeacher /> Faculty
+              </Link>
+              <Link
+                href="/careers"
+                onClick={toggleMobileMenu}
+                className="flex items-center gap-3 text-lg font-medium text-blue-800 hover:text-yellow-500 transition"
+              >
+                <FaBriefcase /> Careers
               </Link>
             </nav>
           </div>
