@@ -2,12 +2,8 @@ import nodemailer from "nodemailer";
 
 export async function POST(req) {
   try {
-    console.log("GMAIL_USER:", process.env.GMAIL_USER);
-    console.log("GMAIL_PASS:", process.env.GMAIL_PASS);
-    console.log("GMAIL_RECEIVER:", process.env.GMAIL_RECEIVER);
-    
     const body = await req.json();
-    const { childName, parentName, email, phone, grade, message } = body;
+    const { text, subject } = body;
 
     // Configure the transporter
     const transporter = nodemailer.createTransport({
@@ -17,20 +13,12 @@ export async function POST(req) {
         pass: process.env.GMAIL_PASS, // Your Gmail app password
       },
     });
-   
     // Email options
     const mailOptions = {
       from: process.env.GMAIL_USER,
       to: process.env.GMAIL_RECEIVER, // Send email to yourself
-      subject: "Admission Enquiry - Netaji High School",
-      text: `
-        Child's Name: ${childName}
-        Parent's Name: ${parentName}
-        Email: ${email}
-        Phone: ${phone}
-        Grade Applying For: ${grade}
-        Message: ${message}
-      `,
+      subject: subject,
+      text: text,
     };
 
     // Send the email
