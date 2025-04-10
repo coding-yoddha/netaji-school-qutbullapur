@@ -21,10 +21,23 @@ const AdmissionPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const subject = "Admission Enquiry - Netaji High School"
+      const text = `
+        Child's Name: ${formData.childName}
+        Parent's Name: ${formData.parentName}
+        Email: ${formData.email}
+        Phone: ${formData.phone}
+        Grade Applying For: ${formData.grade}
+        Message: ${formData.message}
+      `
+      const body = {
+        text,
+        subject
+      }
       const response = await fetch("/api/sendEmail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(body),
       });
   
       if (response.ok) {
