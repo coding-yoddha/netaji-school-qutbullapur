@@ -2,6 +2,10 @@ import nodemailer from "nodemailer";
 
 export async function POST(req) {
   try {
+    console.log("GMAIL_USER:", process.env.GMAIL_USER);
+    console.log("GMAIL_PASS:", process.env.GMAIL_PASS);
+    console.log("GMAIL_RECEIVER:", process.env.GMAIL_RECEIVER);
+    
     const body = await req.json();
     const { childName, parentName, email, phone, grade, message } = body;
 
@@ -13,10 +17,7 @@ export async function POST(req) {
         pass: process.env.GMAIL_PASS, // Your Gmail app password
       },
     });
-    console.log("GMAIL_USER:", process.env.GMAIL_USER);
-console.log("GMAIL_PASS:", process.env.GMAIL_PASS);
-console.log("GMAIL_RECEIVER:", process.env.GMAIL_RECEIVER);
-
+   
     // Email options
     const mailOptions = {
       from: process.env.GMAIL_USER,
