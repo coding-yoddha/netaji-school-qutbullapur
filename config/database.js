@@ -7,6 +7,9 @@ const connectDB = async () => {
 
   try {
     console.log("process.env.MONGODB_URL", process.env.MONGODB_URL);
+    console.log("GMAIL_USER:", process.env.GMAIL_USER);
+    console.log("GMAIL_PASS:", process.env.GMAIL_PASS);
+    console.log("GMAIL_RECEIVER:", process.env.GMAIL_RECEIVER);
     await mongoose.connect(process.env.MONGODB_URL);
     console.log("Mongodb connected");
     return true;
