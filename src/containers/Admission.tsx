@@ -21,7 +21,7 @@ const AdmissionPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const subject = "Admission Enquiry - Netaji High School"
+      const subject = `Admission Enquiry - Netaji High School - ${formData.childName}`
       const text = `
         Child's Name: ${formData.childName}
         Parent's Name: ${formData.parentName}
