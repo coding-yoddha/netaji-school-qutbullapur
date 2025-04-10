@@ -53,7 +53,7 @@ const Careers = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const subject = "Career Enquiry - Netaji High School"
+      const subject = `Career Enquiry - Netaji High School - ${formData.name}`
       const text = `
         Applicant Name: ${formData.name}
         Email: ${formData.email}
