@@ -49,18 +49,39 @@ const Careers = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock API submission (replace with real API call later)
-    console.log("Submitting to API:", formData);
-    // Simulate API call
-    // fetch('/api/careers', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(formData),
-    // }).then(() => console.log('Submitted'));
-    setFormData({ name: "", email: "", phone: "", position: "", message: "" });
-    alert("Application submitted successfully!"); // Feedback for now
+    try {
+      const subject = `Career Enquiry - Netaji High School - ${formData.name}`
+      const text = `
+        Applicant Name: ${formData.name}
+        Email: ${formData.email}
+        Phone: ${formData.phone}
+        Applying For Position: ${formData.position}
+        Message: ${formData.message}
+      `
+      const body = {
+        text,
+        subject
+      }
+      const response = await fetch("/api/sendEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+  
+      if (response.ok) {
+        alert("Application submitted successfully!");
+        setFormData({ name: "", email: "", phone: "", position: "", message: "" });
+        setSubmitted(true);
+      } else {
+        alert("Application submission unsuccessfully!");
+        console.error("Failed to send email");
+      }
+      
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (

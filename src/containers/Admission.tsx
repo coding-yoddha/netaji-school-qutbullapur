@@ -18,9 +18,36 @@ const AdmissionPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    try {
+      const subject = `Admission Enquiry - Netaji High School - ${formData.childName}`
+      const text = `
+        Child's Name: ${formData.childName}
+        Parent's Name: ${formData.parentName}
+        Email: ${formData.email}
+        Phone: ${formData.phone}
+        Grade Applying For: ${formData.grade}
+        Message: ${formData.message}
+      `
+      const body = {
+        text,
+        subject
+      }
+      const response = await fetch("/api/sendEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+  
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        console.error("Failed to send email");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
