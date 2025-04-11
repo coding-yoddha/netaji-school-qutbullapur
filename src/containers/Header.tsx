@@ -9,7 +9,7 @@ import {
   FaUser,
   FaEnvelope,
   FaChalkboardTeacher,
-  FaBriefcase, // Added for Careers icon
+  FaBriefcase,
 } from "react-icons/fa";
 import appLogo from "../../public/schoolLogo1.png";
 

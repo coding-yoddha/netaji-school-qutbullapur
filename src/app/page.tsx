@@ -1,45 +1,38 @@
 "use client";
-import { MainPageDetails } from "@/containers/MainPageDetails";
-import { useEffect, useState } from "react";
-import { fetchMainPageData } from "./utils/apiHelpers";
-import LoadingScreen from "@/components/ui/loader";
 
-interface MainPageDataType {
-  eventImages: unknown;
-  schoolData: {
-    name: string;
-  };
-  description: string;
-  achievement: unknown;
-  hightlights: unknown;
-}
+import { MainPageDetails } from "@/containers/MainPageDetails";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import LoadingScreen from "@/components/ui/loader";
+import { fetchMainPageDetails } from "@/store/slices/dataSlice";
+import { useAppDispatch } from "@/hooks/dispatch";
+import type { RootState } from "@/store/store";
 
 export default function Home() {
-  const [mainPageData, setMainPageData] = useState<MainPageDataType | null>(
-    null
+  const dispatch = useAppDispatch();
+
+  const { mainPageDetails, loading } = useSelector(
+    (state: RootState) => state.schoolDetails
   );
-  const [loading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetchMainPageData().then((res) => {
-      const data = res?.response;
-      setMainPageData(data as MainPageDataType);
-      setIsLoading(false);
-    });
-  }, []);
+    if (!mainPageDetails) {
+      dispatch(fetchMainPageDetails());
+    }
+  }, [dispatch, mainPageDetails]);
 
   return (
     <>
       {loading ? (
         <LoadingScreen />
       ) : (
-        mainPageData && (
+        mainPageDetails && (
           <MainPageDetails
-            images={mainPageData.eventImages}
-            schoolName={mainPageData.schoolData?.name}
-            welcomeMessage={mainPageData.description}
-            achievements={mainPageData.achievement}
-            features={mainPageData.hightlights}
+            images={mainPageDetails.eventImages}
+            schoolName={mainPageDetails.schoolData?.name}
+            welcomeMessage={mainPageDetails.description}
+            achievements={mainPageDetails.achievement}
+            features={mainPageDetails.hightlights}
           />
         )
       )}

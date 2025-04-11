@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { useState, useEffect } from "react";
 

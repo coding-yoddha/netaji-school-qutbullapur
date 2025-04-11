@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Carousel } from "../components/ui/carousel";
@@ -191,52 +193,80 @@ export const MainPageDetails = ({
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-50 to-white relative">
+      <section className="py-16 bg-gradient-to-r from-blue-50 to-white relative overflow-hidden">
         <div className="container mx-auto px-6 sm:px-12 lg:px-20 text-center">
+          {/* Heading */}
           <motion.h2
-            className="text-4xl font-extrabold mb-12 text-black relative inline-block"
+            className="text-4xl font-extrabold mb-12 text-gray-900 relative inline-block"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
+            viewport={{ once: true }} // Prevents re-animation on scroll
           >
             <span className="relative z-10">Why Choose Us?</span>
-            <div className="absolute left-1/2 -bottom-1 w-24 h-[3px] bg-blue-500 transform -translate-x-1/2 rounded-full"></div>
+            <div className="absolute left-1/2 bottom-0 w-24 h-1 bg-blue-600 transform -translate-x-1/2 rounded-full" />
           </motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="p-8 bg-white/30 backdrop-blur-md rounded-2xl shadow-xl border border-blue-300/50 flex flex-col items-center text-center transition-transform duration-500 hover:scale-105 hover:shadow-2xl relative"
-                whileHover={{ scale: 1.08 }}
+                className="p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-blue-200/50 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:border-blue-300 relative group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
               >
-                <div className="text-6xl mb-4 text-blue-500 drop-shadow-lg">
+                {/* Feature Image */}
+                <div className="relative w-24 h-24 mb-4">
                   <Image
                     src={`data:${feature?.image.contentType};base64,${feature.image.data}`}
-                    alt={feature.description}
-                    priority={true}
-                    height={2}
-                    width={2}
-                    className="w-full aspect-[16/9] object-cover rounded-lg shadow-lg"
+                    alt={feature.title}
+                    fill // Replaces width/height with responsive sizing
+                    sizes="(max-width: 768px) 100vw, 33vw" // Responsive sizes
+                    className="object-contain rounded-md"
+                    priority={index === 0} // Priority for the first image only
                   />
                 </div>
-                <h3 className="text-2xl font-semibold mb-2 text-gray-800">
+
+                {/* Feature Title */}
+                <h3 className="text-xl font-semibold mb-2 text-gray-800">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600">{feature.description}</p>
-                <div className="absolute bottom-2 right-4 text-6xl opacity-10">
+
+                {/* Feature Description */}
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {feature.description}
+                </p>
+
+                {/* Subtle Background Icon */}
+                <div className="absolute bottom-0 right-0 w-16 h-16 opacity-10 pointer-events-none">
                   <Image
                     src={`data:${feature?.image.contentType};base64,${feature.image.data}`}
-                    alt={feature.description}
-                    priority={true}
-                    height={2}
-                    width={2}
-                    className="w-full aspect-[16/9] object-cover rounded-lg shadow-lg"
+                    alt={`${feature.title} background`}
+                    fill
+                    className="object-contain"
                   />
                 </div>
               </motion.div>
             ))}
           </div>
+        </div>
+
+        {/* Decorative Background Element */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+          <svg
+            className="absolute opacity-5"
+            width="100%"
+            height="100%"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="10%" cy="20%" r="150" fill="#BFDBFE" />
+            <circle cx="90%" cy="80%" r="100" fill="#FEEBC8" />
+          </svg>
         </div>
       </section>
     </>
