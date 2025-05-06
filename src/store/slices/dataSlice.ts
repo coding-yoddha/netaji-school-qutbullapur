@@ -93,9 +93,11 @@ export const fetchMainPageDetails = createAsyncThunk(
   async () => {
     try {
       const response = await fetchMainPageData();
-      if (response?.success) {
-        return response?.response;
-      }
+      return response;
+      //Uncomment this
+      // if (response?.success) {
+      //   return response?.response;
+      // }
     } catch (error) {
       throw new Error("Failed to fetch main page data");
     }
