@@ -1,5 +1,8 @@
-import { fetchMainPageData } from "@/app/utils/apiHelpers";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  fetchFacultyPageData,
+  fetchMainPageData,
+} from "@/app/utils/apiHelpers";
 
 export interface MainPageDataType {
   eventImages: string[];
@@ -99,6 +102,21 @@ export const fetchMainPageDetails = createAsyncThunk(
   }
 );
 
+export const getFacultyDetails = createAsyncThunk(
+  "data/fetchFacultyPageData",
+  async () => {
+    try {
+      const response = await fetchFacultyPageData();
+      if (response?.success) {
+        console.log("response.response", response.response);
+        return response?.response;
+      }
+    } catch (error) {
+      throw new Error("Failed to fetch main page data");
+    }
+  }
+);
+
 const dataSlice = createSlice({
   name: "schoolDetails",
   initialState: {
@@ -113,6 +131,7 @@ const dataSlice = createSlice({
     error: false,
     submissionStatus: null,
     submissionError: null,
+    facultyDetails: null,
   },
   reducers: {
     resetSubmissionStatus: (state) => {
@@ -156,6 +175,13 @@ const dataSlice = createSlice({
       .addCase(fetchMainPageDetails.rejected, (state, action) => {
         state.loading = false;
         state.error = true;
+      })
+      .addCase(getFacultyDetails.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(getFacultyDetails.fulfilled, (state, action) => {
+        state.loading = false;
+        state.facultyDetails = action.payload;
       });
   },
 });

@@ -5,6 +5,15 @@ import Image from "next/image";
 import Confetti from "react-confetti";
 import annualDay from "../../public/annualDay.jpg";
 
+// Mock Response
+const eventDetails = {
+  title: "Grand Annual Fest 2024",
+  description:
+    " The Grand Annual Fest was a spectacular celebration of talent and creativity. Students participated in various activities, including cultural performances, sports events, and innovative exhibitions.",
+  mainImage: "link",
+  eventImages: ["link1", "link2"],
+};
+
 export default function EventPage() {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 

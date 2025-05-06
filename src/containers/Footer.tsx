@@ -32,8 +32,20 @@ export default function Footer() {
         {/* Quick Links */}
         <div className="flex flex-col sm:flex-row justify-between text-gray-300 text-sm">
           <p>
-            &copy; {new Date().getFullYear()} Netaji High School. All Rights Reserved.
+            &copy; {new Date().getFullYear()} Netaji High School. All Rights
+            Reserved.
           </p>
+          <p className="text-gray-500 text-xs mt-2">
+            Designed & Developed by{" "}
+            <Link
+              href="https://www.aglakadam.com"
+              target="_blank"
+              className="hover:text-white underline transition"
+            >
+              Team Aglakadam
+            </Link>
+          </p>
+
           <div className="flex gap-4 mt-4 sm:mt-0">
             <Link href="/about" className="hover:text-white transition">
               About Us

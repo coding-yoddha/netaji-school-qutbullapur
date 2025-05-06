@@ -43,11 +43,11 @@ const Header = () => {
           <Image
             src={appLogo}
             alt="School Logo"
-            width={80}
-            height={80}
+            width={120}
+            height={120}
             className="rounded-full"
           />
-          <h1 className="text-xl sm:text-2xl font-bold ml-3">
+          <h1 className="text-3xl sm:text-3xl font-bold ml-3">
             Netaji High School
           </h1>
         </Link>

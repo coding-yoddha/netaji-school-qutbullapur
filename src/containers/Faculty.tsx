@@ -1,49 +1,55 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useAppDispatch } from "@/hooks/dispatch";
+import { getFacultyDetails } from "@/store/slices/dataSlice";
+import { RootState } from "@/store/store";
 
 const faculty = [
   {
-    name: "Mrs. Asha Sharma",
+    name: "Mr. Chintala Mahesh Kumar",
     role: "Principal",
-    image: "/teacher1.png",
+    image: "/founderOne.jpeg",
     description:
-      "A seasoned educator with 25+ years of experience in shaping young minds.",
-    qualifications: "M.Ed, B.Ed, PhD in Education",
+      "A dynamic leader with multidisciplinary qualifications and a vision to nurture holistic education through discipline, innovation, and integrity.",
+    qualifications: "B.Ed, LLB, LLM, MBA",
     quote:
       "Our mission is to inspire every student to achieve their highest potential.",
   },
   {
-    name: "Mr. Rajesh Kumar",
-    role: "Science Teacher",
-    image: "/teacher1.png",
+    name: "Mrs. Chintala Nandini",
+    role: "Academic Incharge",
+    image: "/teacher4.jpeg",
     description:
-      "Expert in Physics and Chemistry, inspiring students to love science.",
-    qualifications: "M.Sc in Physics, B.Ed",
+      "A passionate academic coordinator dedicated to maintaining high scholastic standards and supporting students’ academic growth.",
+    qualifications: "M.Sc, B.Ed",
   },
   {
-    name: "Ms. Meera Gupta",
-    role: "Mathematics Teacher",
-    image: "/teacher1.png",
+    name: "Mr. P. Shiva Kumar",
+    role: "Discipline Incharge",
+    image: "/teacher3.jpeg",
     description:
-      "Dedicated to making mathematics engaging and understandable for all students.",
-    qualifications: "M.Sc in Mathematics, B.Ed",
-  },
-  {
-    name: "Mr. Ajay Singh",
-    role: "English Teacher",
-    image: "/teacher1.png",
-    description:
-      "Committed to improving language skills and fostering a love for literature.",
-    qualifications: "M.A in English, B.Ed",
+      "A committed professional focused on instilling discipline and responsibility, ensuring a respectful and structured school environment.",
+    qualifications: "B.Tech",
   },
 ];
 
 export default function Faculty() {
-  const principal = faculty.find((member) => member.role === "Principal");
-  const otherFaculty = faculty.filter((member) => member.role !== "Principal");
+  const { facultyDetails, loading } = useSelector(
+    (state: RootState) => state.schoolDetails
+  );
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!facultyDetails) dispatch(getFacultyDetails());
+  }, [facultyDetails]);
+
+  const principal = faculty?.find((member) => member.role === "Principal");
+  const otherFaculty = faculty?.filter((member) => member.role !== "Principal");
 
   return (
     <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
@@ -58,9 +64,9 @@ export default function Faculty() {
           <Image
             src={principal.image}
             alt={principal.name}
-            width={192}
-            height={192}
-            className="w-48 h-48 object-cover rounded-full shadow-lg"
+            width={250}
+            height={250}
+            className="w-80 h-80 object-cover rounded-full shadow-lg"
           />
 
           <div className="text-center sm:text-left">
@@ -95,13 +101,14 @@ export default function Faculty() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
             >
-              <Image
-                src={member.image}
-                alt={member.name}
-                height={5}
-                width={5}
-                className="w-full h-40 object-cover rounded-t-lg"
-              />
+              <div className="relative w-full h-100 rounded-t-lg overflow-hidden">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <div className="mt-6 text-center">
                 <h3 className="text-xl font-bold mb-2 text-gray-800">
                   {member.name}
