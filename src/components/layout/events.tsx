@@ -5,30 +5,41 @@ import { useRouter } from "next/navigation";
 
 const completedEvents = [
   {
-    title: "🏆 Inter-School Science Championship",
-    date: "Feb 10, 2025",
-    description: "Our students secured 1st place in an innovation challenge!",
+    title: "🏆 Academic Expo",
+    date: "2024–25",
+    description: "An inspiring showcase of academic brilliance, the expo featured interactive models, research presentations, and subject-based exhibits that highlighted students’ intellectual curiosity and innovation.!",
     color: "bg-gradient-to-r from-blue-700 to-indigo-500",
   },
   {
-    title: "🎭 Grand Annual Cultural Fest",
-    date: "Jan 20, 2025",
-    description:
-      "A mesmerizing showcase of dance, drama, and music performances.",
+    title: "Graduation Day",
+    date: "2024–25",
+    description: "A proud and emotional milestone, Graduation Day honored the achievements of our outgoing students, celebrating their journey with heartfelt speeches, awards, and blessings for a bright future.",
     color: "bg-gradient-to-r from-purple-700 to-pink-500",
   },
   {
-    title: "⚽ National Level Sports Meet",
-    date: "Dec 5, 2024",
-    description: "Students won multiple medals in athletics and team sports.",
+    title: "Freshers’ Day",
+    date: "2024-25",
+    description: "An energetic and warm welcome to new students, Freshers’ Day was filled with performances, fun games, and bonding activities that fostered friendship and excitement.",
     color: "bg-gradient-to-r from-green-700 to-teal-500",
   },
   {
-    title: "🎤 Leadership & Public Speaking Summit",
-    date: "Nov 15, 2024",
+    title: "International Yoga Day",
+    date: "2024-25",
     description:
-      "Empowering students with confidence through speech competitions.",
+      "Students and staff came together to celebrate health and mindfulness through yoga sessions, emphasizing the importance of wellness and inner balance.",
     color: "bg-gradient-to-r from-orange-600 to-red-500",
+  },
+  {
+    title: "Student Council Election Day",
+    date: "2024–25",
+    description: "A hands-on lesson in democracy, Election Day saw enthusiastic student participation, campaign speeches, and voting to elect the new student leaders.",
+    color: "bg-gradient-to-r from-blue-700 to-indigo-500",
+  },
+  {
+    title: "Graduation Day",
+    date: "2024–25",
+    description: "A proud and emotional milestone, Graduation Day honored the achievements of our outgoing students, celebrating their journey with heartfelt speeches, awards, and blessings for a bright future.",
+    color: "bg-gradient-to-r from-purple-700 to-pink-500",
   },
 ];
 
