@@ -69,6 +69,61 @@ export const MainPageDetails = ({
         </motion.div>
       </section>
 
+      {/* 10th Results Highlight */}
+
+      <section className="py-16 bg-gradient-to-br from-white via-blue-50 to-white overflow-hidden relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12 text-center">
+          <h2 className="text-4xl font-extrabold mb-6 text-blue-800 relative inline-block">
+            <span className="relative z-10">10th Class Results</span>
+            <div className="absolute left-1/2 bottom-0 w-24 h-1 bg-blue-500 transform -translate-x-1/2 rounded-full" />
+          </h2>
+          <p className="text-lg mb-10 text-gray-600 font-medium">
+            Celebrating the exceptional performance of our bright stars!
+          </p>
+
+          <div className="relative group mx-auto max-w-4xl p-2 sm:p-4 rounded-3xl bg-white bg-opacity-90 backdrop-blur border border-blue-200 shadow-[0_10px_40px_rgba(30,144,255,0.25)] overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_rgba(30,144,255,0.4)]">
+            {/* Shine effect */}
+            <div className="shine-animation absolute inset-0 z-10 pointer-events-none" />
+
+            <img
+              src="/schoolResults.png"
+              alt="10th Class Results"
+              className="rounded-2xl w-full object-cover shadow-xl transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+          </div>
+        </div>
+
+        <style jsx>{`
+          .shine-animation::before {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: -75%;
+            width: 50%;
+            height: 300%;
+            background: linear-gradient(
+              135deg,
+              rgba(255, 255, 255, 0.05) 0%,
+              rgba(255, 255, 255, 0.5) 50%,
+              rgba(255, 255, 255, 0.05) 100%
+            );
+            transform: rotate(0deg);
+            animation: shine 2s ease-out 1;
+          }
+
+          @keyframes shine {
+            0% {
+              top: 100%;
+              left: -75%;
+            }
+            100% {
+              top: -200%;
+              left: 150%;
+            }
+          }
+        `}</style>
+      </section>
+
       <EventsSection />
 
       <section className="py-16 bg-white relative overflow-hidden w-full">

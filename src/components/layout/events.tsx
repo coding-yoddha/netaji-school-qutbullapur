@@ -52,19 +52,21 @@ export default function EventsSection() {
       {/* Scrolling Events Container */}
       <div className="relative w-full flex justify-center">
         {/* Mobile: Vertical Scrolling (Inside Fixed Height Container) */}
-        <div className="relative h-[350px] overflow-hidden sm:hidden">
+        <div className="relative h-[200px] sm:hidden w-full px-4 overflow-hidden">
           <motion.div
             className="flex flex-col space-y-4"
             animate={{ y: ["100%", "-100%"] }}
-            transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+            transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
           >
             {completedEvents.map((event, index) => (
               <div
                 key={index}
                 onClick={() => router.push("/events")}
-                className={`w-[220px] p-3 text-xs text-white font-semibold rounded-lg shadow-lg border-2 border-gray-300 cursor-pointer hover:scale-105 transition-transform ${event.color}`}
+                className={`w-full p-4 text-sm text-white font-medium rounded-lg shadow-lg border border-gray-300 cursor-pointer hover:scale-[1.02] transition-transform ${event.color}`}
               >
-                {event.title}
+                <h3 className="text-base font-semibold">{event.title}</h3>
+                <p className="text-sm font-medium mt-1">{event.date}</p>
+                <p className="text-sm mt-2 break-words">{event.description}</p>
               </div>
             ))}
           </motion.div>
@@ -86,7 +88,7 @@ export default function EventsSection() {
             >
               <h3 className="text-xl font-semibold">{event.title}</h3>
               <p className="text-lg font-medium mt-2">{event.date}</p>
-              <p className="mt-3">{event.description}</p>
+              <p className="mt-3 break-words max-w-sm">{event.description}</p>
             </div>
           ))}
         </motion.div>
