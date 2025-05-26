@@ -15,15 +15,21 @@ const Careers = () => {
       },
       {
         id: 2,
-        title: "Secondary Math Teacher (Classes 6-10)",
+        title: "Secondary Teacher (Classes 6-10)",
         description:
-          "Specialize in Mathematics for higher classes. Requires M.Sc/B.Sc and B.Ed.",
+          "Specialize teachers for higher classes. Requires M.Sc/B.Sc and B.Ed.",
       },
       {
         id: 3,
         title: "School Librarian",
         description:
           "Manage library resources and promote reading. Requires B.Lib or equivalent.",
+      },
+      {
+        id: 4,
+        title: "School Administrator",
+        description:
+          "Manages all administration related activities.",
       },
     ],
   };
