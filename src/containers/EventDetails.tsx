@@ -5,16 +5,9 @@ import Image from "next/image";
 import Confetti from "react-confetti";
 import annualDay from "../../public/annualDay.jpg";
 
-// Mock Response
-const eventDetails = {
-  title: "Grand Annual Fest 2024",
-  description:
-    " The Grand Annual Fest was a spectacular celebration of talent and creativity. Students participated in various activities, including cultural performances, sports events, and innovative exhibitions.",
-  mainImage: "link",
-  eventImages: ["link1", "link2"],
-};
-
-export default function EventPage() {
+export default function EventPage({
+  eventItems,
+}) {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -59,10 +52,10 @@ export default function EventPage() {
 
       {/* Image Gallery */}
       <div className="max-w-6xl mx-auto mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
-        {[annualDay, annualDay, annualDay, annualDay].map((src, index) => (
+        {eventItems.map((img, index) => (
           <Image
             key={index}
-            src={src}
+            src={`data:${img.image.contentType};base64,${img.image.data}`}
             alt={`Event Image ${index + 1}`}
             width={400}
             height={300}
