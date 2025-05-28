@@ -15,6 +15,7 @@ export const MainPageDetails = ({
   welcomeMessage,
   achievements,
   features,
+  events,
 }) => {
   return (
     <>
@@ -124,7 +125,7 @@ export const MainPageDetails = ({
         `}</style>
       </section>
 
-      <EventsSection />
+      <EventsSection events={events}/>
 
       <section className="py-16 bg-white relative overflow-hidden w-full">
         <div className="text-center w-full max-w-none px-6 sm:px-12 lg:px-20">
@@ -227,7 +228,7 @@ export const MainPageDetails = ({
           </motion.h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-            {achievements.map((item, index) => (
+            {achievements?.map((item, index) => (
               <motion.div
                 key={index}
                 className="p-6 bg-white/30 backdrop-blur-md rounded-2xl shadow-xl border border-blue-200/50 relative overflow-hidden transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
