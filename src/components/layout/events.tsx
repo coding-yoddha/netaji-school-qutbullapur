@@ -3,49 +3,11 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
-const completedEvents = [
-  {
-    title: "🏆 Academic Expo",
-    date: "2024–25",
-    description: "An inspiring showcase of academic brilliance, the expo featured interactive models, research presentations, and subject-based exhibits that highlighted students’ intellectual curiosity and innovation.!",
-    color: "bg-gradient-to-r from-blue-700 to-indigo-500",
-  },
-  {
-    title: "Graduation Day",
-    date: "2024–25",
-    description: "A proud and emotional milestone, Graduation Day honored the achievements of our outgoing students, celebrating their journey with heartfelt speeches, awards, and blessings for a bright future.",
-    color: "bg-gradient-to-r from-purple-700 to-pink-500",
-  },
-  {
-    title: "Freshers’ Day",
-    date: "2024-25",
-    description: "An energetic and warm welcome to new students, Freshers’ Day was filled with performances, fun games, and bonding activities that fostered friendship and excitement.",
-    color: "bg-gradient-to-r from-green-700 to-teal-500",
-  },
-  {
-    title: "International Yoga Day",
-    date: "2024-25",
-    description:
-      "Students and staff came together to celebrate health and mindfulness through yoga sessions, emphasizing the importance of wellness and inner balance.",
-    color: "bg-gradient-to-r from-orange-600 to-red-500",
-  },
-  {
-    title: "Student Council Election Day",
-    date: "2024–25",
-    description: "A hands-on lesson in democracy, Election Day saw enthusiastic student participation, campaign speeches, and voting to elect the new student leaders.",
-    color: "bg-gradient-to-r from-blue-700 to-indigo-500",
-  },
-  {
-    title: "Graduation Day",
-    date: "2024–25",
-    description: "A proud and emotional milestone, Graduation Day honored the achievements of our outgoing students, celebrating their journey with heartfelt speeches, awards, and blessings for a bright future.",
-    color: "bg-gradient-to-r from-purple-700 to-pink-500",
-  },
-];
 
-export default function EventsSection() {
+export default function EventsSection({
+  events,
+}) {
   const router = useRouter();
-
   return (
     <div className="relative bg-gradient-to-b from-gray-900 to-gray-800 py-20">
       {/* Section Title */}
@@ -69,10 +31,10 @@ export default function EventsSection() {
             animate={{ y: ["100%", "-100%"] }}
             transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
           >
-            {completedEvents.map((event, index) => (
+            {events?.map((event, index) => (
               <div
                 key={index}
-                onClick={() => router.push("/events")}
+                onClick={() => router.push(`/events?eventId=${encodeURIComponent(event.eventId)}`)}
                 className={`w-full p-4 text-sm text-white font-medium rounded-lg shadow-lg border border-gray-300 cursor-pointer hover:scale-[1.02] transition-transform ${event.color}`}
               >
                 <h3 className="text-base font-semibold">{event.title}</h3>
@@ -89,11 +51,11 @@ export default function EventsSection() {
           animate={{ x: ["100%", "-100%"] }}
           transition={{ repeat: Infinity, duration: 35, ease: "linear" }}
         >
-          {completedEvents.map((event, index) => (
+          {events?.map((event, index) => (
             <div
               key={index}
               onClick={() =>
-                router.push(`/events?event=${encodeURIComponent(event.title)}`)
+                router.push(`/events?eventId=${encodeURIComponent(event.eventId)}`)
               }
               className={`min-w-[320px] sm:min-w-[400px] flex-shrink-0 cursor-pointer transition-transform hover:scale-105 hover:shadow-2xl rounded-xl p-6 text-white shadow-lg border-2 border-gray-300 ${event.color}`}
             >
