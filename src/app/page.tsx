@@ -28,11 +28,12 @@ export default function Home() {
       ) : (
         mainPageDetails && (
           <MainPageDetails
-            images={mainPageDetails.eventImages}
-            schoolName={mainPageDetails.schoolData?.name}
-            welcomeMessage={mainPageDetails.description}
-            achievements={mainPageDetails.achievement}
-            features={mainPageDetails.hightlights}
+            images={mainPageDetails.response.eventImages}
+            schoolName={mainPageDetails.response.schoolData?.name}
+            welcomeMessage={mainPageDetails.response.description}
+            achievements={mainPageDetails.response.achievement}
+            features={mainPageDetails.response.hightlights}
+            events={mainPageDetails.response.events}
           />
         )
       )}
