@@ -20,7 +20,6 @@ const EventsPage = () => {
     async function fetchEventItems() {
       const res = await fetch(`/api/getEventItems?eventId=${eventId}`);
       const json = await res.json();
-      console.log("Event Items:", json);
       if (json.success) setEventItems(json.data);
       setLoading(false);
     }
@@ -29,8 +28,7 @@ const EventsPage = () => {
 
   if (loading) return <div>Loading...</div>;
 
-  console.log("Events Page Rendered: ", eventItems);
-  return <EventDetails eventItems={eventItems}/>;
+  return <EventDetails eventData={eventItems}/>;
 };
 
 export default EventsPage;
