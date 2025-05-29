@@ -1,5 +1,6 @@
 import connectToDB from "../../../../config/database";
 import EventItem from "@/models/eventItem";
+import Event from "@/models/event";
 import { NextResponse } from "next/server";
 
 export async function GET(req) {
@@ -7,8 +8,8 @@ export async function GET(req) {
     await connectToDB();
     const { searchParams } = new URL(req.url);
     const eventId = searchParams.get("eventId");
-    var data = await EventItem.find({eventId});
-    data = data.map((event) => ({
+    var eventItems = await EventItem.find({eventId});
+    eventItems = eventItems.map((event) => ({
       ...event._doc,
       image: event.image
         ? {
@@ -17,9 +18,13 @@ export async function GET(req) {
           }
         : undefined, // If image is not present, set it as undefined
     }));
+    const event = await Event.find({eventId});
     return NextResponse.json({
       success: true,
-      data,
+      data: {
+        eventItems,
+        event
+      },
     });
   } catch (error) {
     return NextResponse.json({
