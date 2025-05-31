@@ -34,7 +34,8 @@ export async function GET() {
           }
         : undefined, // If image is not present, set it as undefined
     }));
-    let mainPageImage = await MainPageImage.find();
+    // let mainPageImage = await MainPageImage.find();
+    let mainPageImage = [];
     console.log("mainPageImage", mainPageImage?.length);
     mainPageImage = mainPageImage.map((event) => ({
       ...event._doc,
