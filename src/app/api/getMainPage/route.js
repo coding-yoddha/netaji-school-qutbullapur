@@ -24,7 +24,7 @@ export async function GET() {
         : undefined,
     };
     let hightlights = await Highlight.find({ showInMain: true });
-    console.log("highlights", highlights);
+    console.log("hightlights", hightlights);
     hightlights = hightlights.map((hightlight) => ({
       ...hightlight._doc,
       image: hightlight.image
