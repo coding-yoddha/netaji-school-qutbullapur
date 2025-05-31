@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -8,48 +8,28 @@ import { useAppDispatch } from "@/hooks/dispatch";
 import { getFacultyDetails } from "@/store/slices/dataSlice";
 import { RootState } from "@/store/store";
 
-const faculty = [
-  {
-    name: "Mr. Chintala Mahesh Kumar",
-    role: "Principal",
-    image: "/founderOne.jpeg",
-    description:
-      "A dynamic leader with multidisciplinary qualifications and a vision to nurture holistic education through discipline, innovation, and integrity.",
-    qualifications: "B.Ed, LLB, LLM, MBA",
-    quote:
-      "Our mission is to inspire every student to achieve their highest potential.",
-  },
-  {
-    name: "Mrs. Chintala Nandini",
-    role: "Academic Incharge",
-    image: "/teacher4.jpeg",
-    description:
-      "A passionate academic coordinator dedicated to maintaining high scholastic standards and supporting students’ academic growth.",
-    qualifications: "M.Sc, B.Ed",
-  },
-  {
-    name: "Mr. P. Shiva Kumar",
-    role: "Discipline Incharge",
-    image: "/teacher3.jpeg",
-    description:
-      "A committed professional focused on instilling discipline and responsibility, ensuring a respectful and structured school environment.",
-    qualifications: "B.Tech",
-  },
-];
-
 export default function Faculty() {
   const { facultyDetails, loading } = useSelector(
     (state: RootState) => state.schoolDetails
   );
-
   const dispatch = useAppDispatch();
+  const [faculty, setFaculty] = useState<any[]>([]);
 
   useEffect(() => {
-    if (!facultyDetails) dispatch(getFacultyDetails());
-  }, [facultyDetails]);
+    if (!facultyDetails) {
+      dispatch(getFacultyDetails());
+    } else {
+      setFaculty(facultyDetails);
+    }
+  }, [facultyDetails, dispatch]);
 
-  const principal = faculty?.find((member) => member.role === "Principal");
-  const otherFaculty = faculty?.filter((member) => member.role !== "Principal");
+  if (loading || !faculty || faculty.length === 0) {
+    return <div>Loading...</div>;
+  }
+  
+  const principal = faculty?.find((member) => member.position === "Principal");
+  const otherFaculty = faculty?.filter((member) => member.position !== "Principal" && member.position !== "Group");
+  const groupImages = faculty?.filter((member) => member.position == "Group");
 
   return (
     <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
@@ -62,8 +42,8 @@ export default function Faculty() {
           transition={{ duration: 0.8 }}
         >
           <Image
-            src={principal.image}
-            alt={principal.name}
+            src={`data:${principal.profilePicture.contentType};base64,${principal.profilePicture.data}`}
+            alt={principal.personalInfo.firstName}
             width={250}
             height={250}
             className="w-80 h-80 object-cover rounded-full shadow-lg"
@@ -71,19 +51,19 @@ export default function Faculty() {
 
           <div className="text-center sm:text-left">
             <h3 className="text-2xl font-bold text-gray-800 mb-2">
-              {principal.name}
+              {principal.personalInfo.lastName} {principal.personalInfo.firstName}
             </h3>
             <p className="text-indigo-600 font-medium text-lg mb-4">
-              {principal.role}
+              {principal.position}
             </p>
             <p className="text-gray-600 italic mb-6">
-              {principal.qualifications}
+              {principal.academicInfo.highestDegree}
             </p>
             <p className="text-gray-700 leading-relaxed">
-              {principal.description}
+              {principal.personalInfo.description}
             </p>
             <blockquote className="mt-6 text-indigo-700 font-semibold italic border-l-4 border-indigo-500 pl-4">
-              {principal.quote}
+              Our mission is to inspire every student to achieve their highest potential.
             </blockquote>
           </div>
         </motion.div>
@@ -93,7 +73,7 @@ export default function Faculty() {
           Meet Our Faculty
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {otherFaculty.map((member, index) => (
+          {otherFaculty?.map((member, index) => (
             <motion.div
               key={index}
               className="p-6 bg-white rounded-lg shadow-xl hover:shadow-2xl transition duration-300 border-t-4 border-blue-500"
@@ -103,22 +83,22 @@ export default function Faculty() {
             >
               <div className="relative w-full h-100 rounded-t-lg overflow-hidden">
                 <Image
-                  src={member.image}
-                  alt={member.name}
+                  src={`data:${member.profilePicture.contentType};base64,${member.profilePicture.data}`}
+                  alt={member.personalInfo.firstName}
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="mt-6 text-center">
                 <h3 className="text-xl font-bold mb-2 text-gray-800">
-                  {member.name}
+                  {member.personalInfo.lastName} {member.personalInfo.firstName}
                 </h3>
                 <p className="text-sm text-gray-500 mb-4 italic">
-                  {member.qualifications}
+                  {member.academicInfo.highestDegree}
                 </p>
-                <p className="text-blue-600 font-medium">{member.role}</p>
+                <p className="text-blue-600 font-medium">{member.position}</p>
                 <p className="text-gray-600 mt-2 text-sm">
-                  {member.description}
+                  {member.personalInfo.description}
                 </p>
               </div>
             </motion.div>
