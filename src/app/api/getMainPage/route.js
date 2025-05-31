@@ -3,6 +3,7 @@ import School from "@/models/school";
 import Highlight from "@/models/highlight";
 import MainPageImage from "@/models/mainPageImage";
 import Achievement from "@/models/achievement";
+import Event from "@/models/event";
 import Review from "@/models/review";
 import Contact from "@/models/contact";
 import { NextResponse } from "next/server";
@@ -44,6 +45,8 @@ export async function GET() {
     const achievement = await Achievement.find();
     const review = await Review.find();
     const contact = await Contact.find();
+    const events = await Event.find();
+    
     const response = {
       schoolData: schoolData,
       hightlights,
@@ -51,6 +54,7 @@ export async function GET() {
       achievement,
       review,
       socialMedia: contact[0].socialMedia,
+      events,
     };
     return NextResponse.json({
       success: true,

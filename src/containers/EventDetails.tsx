@@ -1,20 +1,36 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Confetti from "react-confetti";
-import annualDay from "../../public/annualDay.jpg";
 
-// Mock Response
-const eventDetails = {
-  title: "Grand Annual Fest 2024",
-  description:
-    " The Grand Annual Fest was a spectacular celebration of talent and creativity. Students participated in various activities, including cultural performances, sports events, and innovative exhibitions.",
-  mainImage: "link",
-  eventImages: ["link1", "link2"],
+type EventImage = {
+  contentType: string;
+  data: string;
 };
 
-export default function EventPage() {
+type EventItem = {
+  image: EventImage;
+};
+
+type Event = {
+  title?: string;
+  description?: string;
+};
+
+type EventData = {
+  eventItems?: EventItem[];
+  event?: Event[];
+};
+
+interface EventPageProps {
+  eventData: EventData;
+}
+
+export default function EventPage({
+  eventData,
+}: EventPageProps) {
+  const eventItems = eventData?.eventItems || [];
+  const event = eventData?.event || [];
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -33,15 +49,15 @@ export default function EventPage() {
 
       {/* Event Banner */}
       <div className="relative w-full max-w-6xl mx-auto px-4">
-        <Image
-          src={annualDay}
+       <Image
+          src={`data:${eventItems[0]?.image.contentType};base64,${eventItems[0]?.image.data}`} 
           alt="Event Banner"
           width={1200}
           height={500}
           className="rounded-3xl shadow-lg object-cover w-full h-96"
         />
         <h1 className="text-4xl md:text-6xl font-extrabold text-center mt-6 drop-shadow-md">
-          Grand Annual Fest 2024
+          {event[0]?.title || "Event Title"}
         </h1>
       </div>
 
@@ -51,18 +67,16 @@ export default function EventPage() {
           Event Highlights
         </h2>
         <p className="text-lg leading-relaxed text-center">
-          The Grand Annual Fest was a spectacular celebration of talent and
-          creativity. Students participated in various activities, including
-          cultural performances, sports events, and innovative exhibitions.
+          {event[0]?.description || "" }
         </p>
       </div>
 
       {/* Image Gallery */}
       <div className="max-w-6xl mx-auto mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
-        {[annualDay, annualDay, annualDay, annualDay].map((src, index) => (
+        {eventItems.map((img, index) => (
           <Image
             key={index}
-            src={src}
+            src={`data:${img.image.contentType};base64,${img.image.data}`}
             alt={`Event Image ${index + 1}`}
             width={400}
             height={300}
