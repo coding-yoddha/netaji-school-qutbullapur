@@ -26,9 +26,11 @@ export default function Faculty() {
   if (loading || !faculty || faculty.length === 0) {
     return <div>Loading...</div>;
   }
-  
+
   const principal = faculty?.find((member) => member.position === "Principal");
-  const otherFaculty = faculty?.filter((member) => member.position !== "Principal" && member.position !== "Group");
+  const otherFaculty = faculty?.filter(
+    (member) => member.position !== "Principal" && member.position !== "Group"
+  );
   const groupImages = faculty?.filter((member) => member.position == "Group");
 
   return (
@@ -51,7 +53,8 @@ export default function Faculty() {
 
           <div className="text-center sm:text-left">
             <h3 className="text-2xl font-bold text-gray-800 mb-2">
-              {principal.personalInfo.lastName} {principal.personalInfo.firstName}
+              {principal.personalInfo.lastName}{" "}
+              {principal.personalInfo.firstName}
             </h3>
             <p className="text-indigo-600 font-medium text-lg mb-4">
               {principal.position}
@@ -63,7 +66,8 @@ export default function Faculty() {
               {principal.personalInfo.description}
             </p>
             <blockquote className="mt-6 text-indigo-700 font-semibold italic border-l-4 border-indigo-500 pl-4">
-              Our mission is to inspire every student to achieve their highest potential.
+              Our mission is to inspire every student to achieve their highest
+              potential.
             </blockquote>
           </div>
         </motion.div>
@@ -104,6 +108,35 @@ export default function Faculty() {
             </motion.div>
           ))}
         </div>
+        {/* Group Photos Section */}
+        {groupImages?.length > 0 && (
+          <div className="mt-20">
+            <h2 className="text-4xl font-extrabold text-center mb-8 text-indigo-700">
+              Team Moments
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {groupImages.map((group, index) => (
+                <div
+                  key={index}
+                  className="relative bg-white rounded-xl shadow-lg overflow-hidden p-4 flex flex-col items-center"
+                >
+                  <div className="w-full h-auto max-h-80 flex justify-center items-center">
+                    <Image
+                      src={`data:${group.profilePicture.contentType};base64,${group.profilePicture.data}`}
+                      alt={`Group Photo ${index + 1}`}
+                      width={600}
+                      height={400}
+                      className="object-contain rounded-lg"
+                    />
+                  </div>
+                  <p className="mt-4 text-center text-gray-700 text-sm italic">
+                    {group.personalInfo?.firstName || "Faculty Group"}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
