@@ -13,16 +13,18 @@ export async function GET() {
     await connectToDB();
 
     const data = await School.find();
+    console.log("data", data);
     const schoolData = {
       ...data[0]._doc,
       logo: data[0]
-      ? {
-          data: data[0].logo.data.toString("base64"), // Convert Buffer to Base64 if present
-          contentType: data[0].logo.contentType,
-        }
-      : undefined,
+        ? {
+            data: data[0].logo.data.toString("base64"), // Convert Buffer to Base64 if present
+            contentType: data[0].logo.contentType,
+          }
+        : undefined,
     };
     let hightlights = await Highlight.find({ showInMain: true });
+    console.log("highlights", highlights);
     hightlights = hightlights.map((hightlight) => ({
       ...hightlight._doc,
       image: hightlight.image
@@ -33,6 +35,7 @@ export async function GET() {
         : undefined, // If image is not present, set it as undefined
     }));
     let mainPageImage = await MainPageImage.find();
+    console.log("mainPageImage", mainPageImage?.length);
     mainPageImage = mainPageImage.map((event) => ({
       ...event._doc,
       image: event.image
@@ -43,10 +46,14 @@ export async function GET() {
         : undefined, // If image is not present, set it as undefined
     }));
     const achievement = await Achievement.find();
+    console.log("achievement", achievement?.length);
     const review = await Review.find();
+    console.log("review", review);
     const contact = await Contact.find();
+    console.log("contact", contact);
     const events = await Event.find();
-    
+    console.log("events", events);
+
     const response = {
       schoolData: schoolData,
       hightlights,
