@@ -1,10 +1,10 @@
 "use client";
 
+import { Suspense } from "react";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
 import Header from "@/containers/Header";
 import Footer from "@/containers/Footer";
-// import { Suspense } from "react";
 
 export default function ClientLayout({
   children,
@@ -13,11 +13,11 @@ export default function ClientLayout({
 }) {
   return (
     <Provider store={store}>
-      {/* <Suspense> */}
-      <Header />
-      {children}
-      <Footer />
-      {/* </Suspense> */}
+      <Suspense>
+        <Header />
+        {children}
+        <Footer />
+      </Suspense>
     </Provider>
   );
 }

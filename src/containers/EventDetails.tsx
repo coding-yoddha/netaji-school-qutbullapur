@@ -42,7 +42,6 @@ export default function EventPage({ eventData }: EventPageProps) {
         width={windowSize.width}
         height={windowSize.height}
         numberOfPieces={50}
-        // opacity={0.1}
       />
 
       {/* Event Banner */}
