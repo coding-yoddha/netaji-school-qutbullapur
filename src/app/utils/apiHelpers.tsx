@@ -40,9 +40,6 @@ const fetchMainPageData = async () => {
   }
   const data = await res.json();
   return data;
-
-  // Remove this
-  // return mockMainResponse;
 };
 
 export {

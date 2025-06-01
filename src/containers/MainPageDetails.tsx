@@ -17,6 +17,7 @@ export const MainPageDetails = ({
   features,
   events,
 }) => {
+  console.log("images", images);
   return (
     <>
       {/* Hero Section */}
@@ -125,7 +126,7 @@ export const MainPageDetails = ({
         `}</style>
       </section>
 
-      <EventsSection events={events}/>
+      <EventsSection events={events} />
 
       <section className="py-16 bg-white relative overflow-hidden w-full">
         <div className="text-center w-full max-w-none px-6 sm:px-12 lg:px-20">

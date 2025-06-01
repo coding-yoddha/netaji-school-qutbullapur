@@ -26,9 +26,7 @@ interface EventPageProps {
   eventData: EventData;
 }
 
-export default function EventPage({
-  eventData,
-}: EventPageProps) {
+export default function EventPage({ eventData }: EventPageProps) {
   const eventItems = eventData?.eventItems || [];
   const event = eventData?.event || [];
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
@@ -49,8 +47,8 @@ export default function EventPage({
 
       {/* Event Banner */}
       <div className="relative w-full max-w-6xl mx-auto px-4">
-       <Image
-          src={`data:${eventItems[0]?.image.contentType};base64,${eventItems[0]?.image.data}`} 
+        <Image
+          src={`data:${eventItems[0]?.image.contentType};base64,${eventItems[0]?.image.data}`}
           alt="Event Banner"
           width={1200}
           height={500}
@@ -67,7 +65,7 @@ export default function EventPage({
           Event Highlights
         </h2>
         <p className="text-lg leading-relaxed text-center">
-          {event[0]?.description || "" }
+          {event[0]?.description || ""}
         </p>
       </div>
 

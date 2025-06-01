@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useAppDispatch } from "@/hooks/dispatch";
 import { getFacultyDetails } from "@/store/slices/dataSlice";
 import { RootState } from "@/store/store";
+import LoadingScreen from "@/components/ui/loader";
 
 export default function Faculty() {
   const { facultyDetails, loading } = useSelector(
@@ -24,7 +25,7 @@ export default function Faculty() {
   }, [facultyDetails, dispatch]);
 
   if (loading || !faculty || faculty.length === 0) {
-    return <div>Loading...</div>;
+    return <LoadingScreen />;
   }
 
   const principal = faculty?.find((member) => member.position === "Principal");
