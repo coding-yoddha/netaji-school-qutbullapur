@@ -45,7 +45,7 @@ export async function GET() {
     const achievement = await Achievement.find();
     const review = await Review.find();
     const contact = await Contact.find();
-    const events = await Event.find();
+    const events = await Event.find().sort({ order: 1 });
 
     const response = {
       schoolData: schoolData,
