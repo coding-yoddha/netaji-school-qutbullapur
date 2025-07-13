@@ -15,6 +15,7 @@ type EventItem = {
 type Event = {
   title?: string;
   description?: string;
+  additionalDesc?: string[];
 };
 
 type EventData = {
@@ -66,6 +67,17 @@ export default function EventPage({ eventData }: EventPageProps) {
         <p className="text-lg leading-relaxed text-center">
           {event[0]?.description || ""}
         </p>
+
+        {/* Display additional descriptions if available */}
+        {event[0]?.additionalDesc && Array.isArray(event[0].additionalDesc) && event[0].additionalDesc.length > 0 && (
+          <div className="mt-6 space-y-4">
+            {event[0].additionalDesc.map((desc, index) => (
+              <p key={index} className="text-lg leading-relaxed">
+                {desc}
+              </p>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Image Gallery */}
