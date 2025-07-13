@@ -8,7 +8,7 @@ export async function GET(req) {
     await connectToDB();
     const { searchParams } = new URL(req.url);
     const eventId = searchParams.get("eventId");
-    var eventItems = await EventItem.find({eventId});
+    var eventItems = await EventItem.find({eventId}).sort({order: 1});
     eventItems = eventItems.map((event) => ({
       ...event._doc,
       image: event.image
