@@ -3,13 +3,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Confetti from "react-confetti";
 
-type EventImage = {
-  contentType: string;
-  data: string;
-};
-
 type EventItem = {
-  image: EventImage;
+  imageUrl: string;
 };
 
 type Event = {
@@ -25,6 +20,38 @@ type EventData = {
 
 interface EventPageProps {
   eventData: EventData;
+}
+
+function EventImage({ src, alt, className, width, height }: {
+  src: string;
+  alt: string;
+  className?: string;
+  width: number;
+  height: number;
+}) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className="relative">
+      {!loaded && (
+        <div className="absolute inset-0 bg-gray-100 rounded-2xl flex flex-col items-center justify-center gap-2">
+          <svg className="w-8 h-8 text-blue-500 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+          </svg>
+          <span className="text-sm text-gray-500">Loading...</span>
+        </div>
+      )}
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        className={`${className} transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        onLoad={() => setLoaded(true)}
+      />
+    </div>
+  );
 }
 
 export default function EventPage({ eventData }: EventPageProps) {
@@ -47,8 +74,8 @@ export default function EventPage({ eventData }: EventPageProps) {
 
       {/* Event Banner */}
       <div className="relative w-full max-w-6xl mx-auto px-4">
-        <Image
-          src={`data:${eventItems[0]?.image.contentType};base64,${eventItems[0]?.image.data}`}
+        <EventImage
+          src={eventItems[0]?.imageUrl}
           alt="Event Banner"
           width={1200}
           height={500}
@@ -83,9 +110,9 @@ export default function EventPage({ eventData }: EventPageProps) {
       {/* Image Gallery */}
       <div className="max-w-6xl mx-auto mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
         {eventItems.map((img, index) => (
-          <Image
+          <EventImage
             key={index}
-            src={`data:${img.image.contentType};base64,${img.image.data}`}
+            src={img.imageUrl}
             alt={`Event Image ${index + 1}`}
             width={400}
             height={300}
