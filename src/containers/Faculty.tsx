@@ -9,6 +9,44 @@ import { getFacultyDetails } from "@/store/slices/dataSlice";
 import { RootState } from "@/store/store";
 import LoadingScreen from "@/components/ui/loader";
 
+function FacultyImage({ src, alt, className, fill, width, height }: {
+  src: string;
+  alt: string;
+  className?: string;
+  fill?: boolean;
+  width?: number;
+  height?: number;
+}) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className={`relative ${fill ? 'w-full h-full' : ''}`}>
+      {!loaded && (
+        <div
+          className={`absolute inset-0 bg-gray-100 flex flex-col items-center justify-center gap-2 ${
+            className?.includes('rounded-full') ? 'rounded-full' : 'rounded-lg'
+          }`}
+        >
+          <svg className="w-8 h-8 text-blue-500 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+          </svg>
+          <span className="text-sm text-gray-500">Loading...</span>
+        </div>
+      )}
+      <Image
+        src={src}
+        alt={alt}
+        className={`${className} transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        fill={fill}
+        width={width}
+        height={height}
+        onLoad={() => setLoaded(true)}
+      />
+    </div>
+  );
+}
+
 export default function Faculty() {
   const { facultyDetails, loading } = useSelector(
     (state: RootState) => state.schoolDetails
@@ -44,8 +82,8 @@ export default function Faculty() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Image
-            src={`data:${principal.profilePicture.contentType};base64,${principal.profilePicture.data}`}
+          <FacultyImage
+            src={principal.imageUrl}
             alt={principal.personalInfo.firstName}
             width={250}
             height={250}
@@ -87,8 +125,8 @@ export default function Faculty() {
               transition={{ duration: 0.6 }}
             >
               <div className="relative w-full h-100 rounded-t-lg overflow-hidden">
-                <Image
-                  src={`data:${member.profilePicture.contentType};base64,${member.profilePicture.data}`}
+                <FacultyImage
+                  src={member.imageUrl}
                   alt={member.personalInfo.firstName}
                   fill
                   className="object-cover"
@@ -122,8 +160,8 @@ export default function Faculty() {
                   className="relative bg-white rounded-xl shadow-lg overflow-hidden p-4 flex flex-col items-center"
                 >
                   <div className="w-full h-auto max-h-80 flex justify-center items-center">
-                    <Image
-                      src={`data:${group.profilePicture.contentType};base64,${group.profilePicture.data}`}
+                    <FacultyImage
+                      src={group.imageUrl}
                       alt={`Group Photo ${index + 1}`}
                       width={600}
                       height={400}
