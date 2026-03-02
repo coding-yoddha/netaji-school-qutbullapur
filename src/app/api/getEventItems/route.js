@@ -8,22 +8,22 @@ export async function GET(req) {
     await connectToDB();
     const { searchParams } = new URL(req.url);
     const eventId = searchParams.get("eventId");
-    var eventItems = await EventItem.find({eventId}).sort({order: 1});
-    eventItems = eventItems.map((event) => ({
-      ...event._doc,
-      image: event.image
-        ? {
-            data: event.image.data.toString("base64"), // Convert Buffer to Base64 if present
-            contentType: event.image.contentType,
-          }
-        : undefined, // If image is not present, set it as undefined
+
+    const [eventItemDocs, event] = await Promise.all([
+      EventItem.find({ eventId }).select('-image').sort({ order: 1 }).lean(),
+      Event.find({ eventId }).select('-image').lean(),
+    ]);
+
+    const eventItems = eventItemDocs.map((item) => ({
+      ...item,
+      imageUrl: `/api/image/eventItem/${item._id}`,
     }));
-    const event = await Event.find({eventId});
+
     return NextResponse.json({
       success: true,
       data: {
         eventItems,
-        event
+        event,
       },
     });
   } catch (error) {
