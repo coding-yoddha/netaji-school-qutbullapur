@@ -22,7 +22,7 @@ export const MainPageDetails = ({
     <>
       {/* Hero Section */}
       <section
-        className="text-black py-24 flex items-center justify-center text-center relative overflow-hidden bg-gradient-to-r from-blue-50 to-white shadow-xl"
+        className="text-black py-6 flex items-center justify-center text-center relative overflow-hidden bg-gradient-to-r from-blue-50 to-white shadow-xl"
         style={{
           background: "#ffffff",
         }}
@@ -71,65 +71,40 @@ export const MainPageDetails = ({
         </motion.div>
       </section>
 
-      {/* Admissions Open Banner */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-40 h-40 bg-white rounded-full -translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 right-0 w-56 h-56 bg-white rounded-full translate-x-1/4 translate-y-1/4" />
-        </div>
-        <motion.div
-          className="container mx-auto px-6 sm:px-12 lg:px-20 py-10 flex flex-col sm:flex-row items-center justify-between gap-6 relative z-10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <div className="text-center sm:text-left">
-            <div className="flex items-center gap-3 justify-center sm:justify-start mb-2">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-              </span>
-              <span className="text-white text-sm font-semibold uppercase tracking-widest">
-                Now Open
-              </span>
-            </div>
-            <h3 className="text-3xl sm:text-4xl font-extrabold text-white drop-shadow-md">
-              Admissions 2026-27
-            </h3>
-            <p className="text-green-100 mt-2 text-lg max-w-lg">
-              Secure your child&apos;s future with quality education. Limited seats available!
-            </p>
-          </div>
-          <motion.a
-            href="/admissions"
-            className="inline-block px-8 py-4 bg-white text-green-700 font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Apply Now &rarr;
-          </motion.a>
-        </motion.div>
-      </section>
-
       {/* 10th Results Highlight */}
-
-      <section className="py-16 bg-gradient-to-br from-white via-blue-50 to-white overflow-hidden relative">
+      <section className="py-12 bg-gradient-to-br from-white via-blue-50 to-white overflow-hidden relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12 text-center">
           <h2 className="text-4xl font-extrabold mb-6 text-blue-800 relative inline-block">
-            <span className="relative z-10">10th Class Results</span>
-            <div className="absolute left-1/2 bottom-0 w-24 h-1 bg-blue-500 transform -translate-x-1/2 rounded-full" />
+            {/* <span className="relative z-10">10th Class Results</span>
+            <div className="absolute left-1/2 bottom-0 w-24 h-1 bg-blue-500 transform -translate-x-1/2 rounded-full" /> */}
           </h2>
-          <p className="text-lg mb-10 text-gray-600 font-medium">
-            Celebrating the exceptional performance of our bright stars!
-          </p>
+          <div className="mb-10 space-y-4 max-w-4xl mx-auto">
+            <p className="text-2xl font-bold text-blue-900 flex items-center justify-center gap-2">
+              One More Year of Success! 🎊
+            </p>
+            <p className="text-lg text-gray-700 font-semibold italic">
+              Our SSC toppers prove it: excellence is a tradition here, not a coincidence.
+            </p>
+            <p className="text-base text-gray-600 leading-relaxed">
+              We&apos;re celebrating another year of record-setting results — new benchmarks in academic achievement, driven by dedication and discipline.
+            </p>
+            <p className="text-lg font-bold text-blue-800 tracking-wide">
+              Where hard work meets history.
+            </p>
+            <div>
+              <p className="text-sm text-gray-500 font-medium mb-2">Our legacy speaks through results:</p>
+              <p className="text-base text-gray-700 font-semibold">
+                Dedicated Teachers | Determined Students | Distinguished Results
+              </p>
+            </div>
+          </div>
 
           <div className="relative group mx-auto max-w-4xl p-2 sm:p-4 rounded-3xl bg-white bg-opacity-90 backdrop-blur border border-blue-200 shadow-[0_10px_40px_rgba(30,144,255,0.25)] overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_rgba(30,144,255,0.4)]">
             {/* Shine effect */}
             <div className="shine-animation absolute inset-0 z-10 pointer-events-none" />
 
             <img
-              src="/schoolResults.png"
+              src="/schoolResults1.png"
               alt="10th Class Results"
               className="rounded-2xl w-full object-cover shadow-xl transition-transform duration-500 group-hover:scale-[1.02]"
             />
@@ -165,6 +140,47 @@ export const MainPageDetails = ({
             }
           }
         `}</style>
+      </section>
+
+      {/* Admissions Open Banner */}
+      <section className="relative overflow-hidden bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-40 h-40 bg-white rounded-full -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-56 h-56 bg-white rounded-full translate-x-1/4 translate-y-1/4" />
+        </div>
+        <motion.div
+          className="container mx-auto px-6 sm:px-12 lg:px-20 py-10 flex flex-col sm:flex-row items-center justify-between gap-6 relative z-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="text-center sm:text-left">
+            <div className="flex items-center gap-3 justify-center sm:justify-start mb-2">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+              </span>
+              <span className="text-white text-sm font-semibold uppercase tracking-widest">
+                Now Open
+              </span>
+            </div>
+            <h3 className="text-3xl sm:text-4xl font-extrabold text-white drop-shadow-md">
+              Admissions Open for Session 2026-27
+            </h3>
+            <p className="text-green-100 mt-2 text-lg max-w-lg font-semibold">
+              Be Part of the Next Success Story
+            </p>
+          </div>
+          <motion.a
+            href="/admissions"
+            className="inline-block px-8 py-4 bg-white text-green-700 font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Apply Now &rarr;
+          </motion.a>
+        </motion.div>
       </section>
 
       <EventsSection events={events} />
