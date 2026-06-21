@@ -21,7 +21,7 @@ export async function GET() {
       Highlight.find({ showInMain: true }),
       Achievement.find().lean(),
       Contact.find().select('socialMedia').lean(),
-      Event.find().select('-image').sort({ order: 1 }).lean(),
+      Event.find().sort({ order: 1 }),
     ]);
 
     const schoolData = schoolDocs[0] || {};
@@ -36,13 +36,23 @@ export async function GET() {
         : undefined, // If image is not present, set it as undefined
     }));
 
+    const eventsWithImage = events.map((event) => ({
+      ...event._doc,
+      image: event.image?.data?.length && event.image?.contentType
+        ? {
+            data: event.image.data.toString("base64"),
+            contentType: event.image.contentType,
+          }
+        : undefined,
+    }));
+
     const response = {
       schoolData: schoolData,
       hightlights,
       eventImages: [],
       achievement,
       socialMedia: contact[0]?.socialMedia,
-      events,
+      events: eventsWithImage,
     };
     return NextResponse.json({
       success: true,
